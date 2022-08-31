@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="深度学习基础实验目录实验总结实验2-1 numpy手写三层神经网络实验2-2 pytorch三层回归神经网络实验2-3 pytorch三层分类神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习基础实验">
+<meta property="og:url" content="http://example.com/2022/08/31/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C/index.html">
+<meta property="og:site_name" content="打工试验场">
+<meta property="og:description" content="深度学习基础实验目录实验总结实验2-1 numpy手写三层神经网络实验2-2 pytorch三层回归神经网络实验2-3 pytorch三层分类神经网络">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgur.com/eBurRat.png">
+<meta property="og:image" content="https://i.imgur.com/4YkeJxv.png">
+<meta property="og:image" content="https://i.imgur.com/zsrh8dH.png">
+<meta property="article:published_time" content="2022-08-31T05:52:49.000Z">
+<meta property="article:modified_time" content="2022-08-31T12:37:50.951Z">
+<meta property="article:author" content="Sparidae">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/eBurRat.png">
+
+<link rel="canonical" href="http://example.com/2022/08/31/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>深度学习基础实验 | 打工试验场</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">打工试验场</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/31/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/gY8RyJm.png">
+      <meta itemprop="name" content="Sparidae">
+      <meta itemprop="description" content="Great ideals but through selfless struggle and sacrifice to achieve">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="打工试验场">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          深度学习基础实验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-31 13:52:49 / 修改时间：20:37:50" itemprop="dateCreated datePublished" datetime="2022-08-31T13:52:49+08:00">2022-08-31</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="深度学习基础实验"><a href="#深度学习基础实验" class="headerlink" title="深度学习基础实验"></a>深度学习基础实验</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93">实验总结</a><br><a href="#%E5%AE%9E%E9%AA%8C2-1-%E5%9F%BA%E4%BA%8Enumpy%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%89%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">实验2-1 numpy手写三层神经网络</a><br><a href="#%E5%AE%9E%E9%AA%8C2-2-%E5%9F%BA%E4%BA%8Epytorch%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%89%E5%B1%82%E5%9B%9E%E5%BD%92%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">实验2-2 pytorch三层回归神经网络</a><br><a href="#%E5%AE%9E%E9%AA%8C2-3-%E5%9F%BA%E4%BA%8Epytorch%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%89%E5%B1%82%E5%88%86%E7%B1%BB%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C">实验2-3 pytorch三层分类神经网络</a></p>
+<span id="more"></span>
+
+<h2 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h2><ul>
+<li><strong>优化算法&#x2F;优化器Optimizer</strong> ：BP梯度下降,adam算法<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/55150256">优化算法Optimizer比较和总结</a></li>
+<li>简单了解了matplotlib库</li>
+<li>简单了解了神经网络顺序结构组成与结合 明白了sigmoid以及BP梯度下降算法的运行原理</li>
+<li>学习了numpy库的基本用法</li>
+</ul>
+<h2 id="实验2-1-基于numpy构建简单的三层神经网络"><a href="#实验2-1-基于numpy构建简单的三层神经网络" class="headerlink" title="实验2-1 基于numpy构建简单的三层神经网络"></a>实验2-1 基于numpy构建简单的三层神经网络</h2><h4 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h4><ol>
+<li>了解反向传播网络BP的基本原理；</li>
+<li>了解梯度下降法进行神经网络中的权值更新；</li>
+<li>学习使用 numpy 编写简单的三层回归网络进行回归实验。</li>
+</ol>
+<h4 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h4><p>使用 numpy 库构建简单的数据集，编写简单的三层回归神经网络，输入和输出只有一个神经元，中间隐藏层可设置 N 个神经元，采用 sigmoid 函数作为激活函数。数据集按 y&#x3D;x+随机噪声 进行构建，x 取值为 0, 1, …, 19。学习梯度计算，及梯度下降法进行神经网络的权值修改</p>
+<p>导入必要的库</p>
+<ul>
+<li>可改参数N H learning_rate</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+<p><strong>sigmoid函数</strong><br><img src="https://i.imgur.com/eBurRat.png" alt="sigmiod函数公式"><br><img src="https://i.imgur.com/4YkeJxv.png" alt="sigmoid函数的图像"><br>sigmoid函数的导数可以用自己表示<br><img src="https://i.imgur.com/zsrh8dH.png" alt="sigmoid函数导数公式"></p>
+<ul>
+<li><strong>np.exp(x)</strong> 返回e的x次幂</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid_derivative</span>(<span class="params">s</span>):</span><br><span class="line">    ds = s * (<span class="number">1</span> - s)</span><br><span class="line">    <span class="keyword">return</span> ds</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid</span>(<span class="params">x</span>):</span><br><span class="line">    s = <span class="number">1</span> / (<span class="number">1</span> + np.exp(-x))</span><br><span class="line">    <span class="keyword">return</span> s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>变量 N</strong> 是batchsize</li>
+<li><strong>变量 D_in</strong> 是输入维度</li>
+<li><strong>变量 H</strong> 是隐藏层维度</li>
+<li><strong>变量D_out</strong> 是输出维度</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># N is batch size; </span></span><br><span class="line"><span class="comment"># D_in is input dimension;</span></span><br><span class="line"><span class="comment"># H is hidden dimension; D_out is output dimension. </span></span><br><span class="line">N, D_in, H, D_out = <span class="number">20</span>, <span class="number">1</span>, <span class="number">64</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>np.arange</strong> 生成指定范围和步长的数字数组</li>
+<li><strong>np.random.randn(d1,d2,…)</strong> 如果提供正int_like参数，randn 生成一个数组，其中填充了从均值为 0 和方差 1 的单变量“正态”（高斯）分布中抽样的随机浮点数 在这里用于产生随机噪声</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create random input and output data</span></span><br><span class="line"><span class="comment"># 创建随机输入和输出数据</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">x = np.arange(<span class="number">0</span>,N,<span class="number">1</span>).reshape(N,D_in)*<span class="number">1.0</span> <span class="comment">#20*1 创建0到n步长为1的数组 并将其转化为输入矩阵</span></span><br><span class="line">y = x + np.random.randn(N,D_out) <span class="comment">#20*1 </span></span><br><span class="line"><span class="comment"># x,y共同组成数据集</span></span><br><span class="line"><span class="comment"># Randomly initialize weights 随机初始化权重</span></span><br><span class="line">w1 = np.random.randn(D_in, H) <span class="comment">#1*64</span></span><br><span class="line">w2 = np.random.randn(H, D_out) <span class="comment">#64*1</span></span><br><span class="line">learning_rate = <span class="number">1e-3</span> <span class="comment">#学习率</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>np.dot(a,b)或者a.dot(b)</strong> numpy函数 返回a和b矩阵乘的结果矩阵</li>
+<li><strong>numpy.square()函数</strong> 返回一个新矩阵 其中每个元素都是原来矩阵对应元素的平方</li>
+<li><strong>损失函数Loss(w1,w2,w3,…)</strong> 损失函数，是用来评估预测值y_pred和真实值y之间的差异，常见的损失函数比如：<br>0-1损失函数 绝对值损失函数对数损失函数 平方损失函数 指数损失函数<br>其中的y_pred可以表示为整个网络中输入x 所有权值 激活函数组成的表达式<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/58883095">常见的损失函数总结-知乎</a></li>
+<li><strong>反向传播BP(backprop)</strong><br>损失函数里面自变量是网络所有的权值w 然后通过计算w的偏导，来计算loss关于所有w的梯度，然后向loss更小的部分更新w，<br><a target="_blank" rel="noopener" href="https://zh.m.wikipedia.org/zh-hans/%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95">反向传播算法-维基百科</a><br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27239198">如何直观解释反向传播算法-知乎</a></li>
+<li><strong>learning_rate学习率</strong> 重要的超参 控制每次更新的大小，学习率太高可能会使权值w的更新失去很多细节，摇摆不定，学习率太低则可能很久都不能得到最好的权值w，设定合适的学习率非常重要</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: compute predicted y 前向传播 计算预测的y</span></span><br><span class="line">    h = x.dot(w1) <span class="comment"># x和w1矩阵乘 (20,64)</span></span><br><span class="line">    h_relu = sigmoid(h) <span class="comment"># 对整个矩阵做sigmoid</span></span><br><span class="line">    y_pred = h_relu.dot(w2) <span class="comment"># </span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Compute loss 计算损失 平方损失函数</span></span><br><span class="line">    loss = np.square(y_pred - y).<span class="built_in">sum</span>() <span class="comment"># (yp-y)^2</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Backprop to compute gradients of w1 and w2 with respect to loss </span></span><br><span class="line">    <span class="comment"># 使用反向传播来计算w1和w2关于损失函数Loss()的梯度</span></span><br><span class="line">    grad_y_pred = <span class="number">2.0</span> * (y_pred - y) <span class="comment">#2*(yp-y)</span></span><br><span class="line">    grad_w2 = h_relu.T.dot(grad_y_pred) <span class="comment">#</span></span><br><span class="line">    grad_h = grad_y_pred.dot(w2.T) <span class="comment">#[N, H]=[N, 1]*[1, H]</span></span><br><span class="line">    grad_h = grad_h*sigmoid_derivative(h_relu) <span class="comment">#[N, H]=[N, H] . [N, H]]</span></span><br><span class="line">    grad_w1 = x.T.dot(grad_h) <span class="comment">#[1, H]=[1, N]*&#123;N, H&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Update weights 根据学习率和梯度更新权重 </span></span><br><span class="line">    w1 -= learning_rate * grad_w1</span><br><span class="line">    w2 -= learning_rate * grad_w2</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 画图</span></span><br><span class="line">    <span class="keyword">if</span> (t%<span class="number">1000</span>==<span class="number">0</span>):</span><br><span class="line">        plt.cla()</span><br><span class="line">        plt.scatter(x,y)</span><br><span class="line">        plt.scatter(x,y_pred)</span><br><span class="line">        plt.plot(x,y_pred,<span class="string">&#x27;r-&#x27;</span>,lw=<span class="number">1</span>, label=<span class="string">&quot;plot figure&quot;</span>)</span><br><span class="line">        plt.text(<span class="number">0.5</span>, <span class="number">0</span>, <span class="string">&#x27;t=%d:Loss=%.4f&#x27;</span> % (t, loss), fontdict=&#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">20</span>, <span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>&#125;)</span><br><span class="line">        plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验2-2-基于pytorch构建简单的三层回归神经网络"><a href="#实验2-2-基于pytorch构建简单的三层回归神经网络" class="headerlink" title="实验2-2 基于pytorch构建简单的三层回归神经网络"></a>实验2-2 基于pytorch构建简单的三层回归神经网络</h2><h4 id="实验目的-1"><a href="#实验目的-1" class="headerlink" title="实验目的"></a>实验目的</h4><ol>
+<li>了解 pytorch 下采用 adam 梯度下降法进行神经网络中的权值更新；</li>
+<li>学习使用 pytorch 编写简单的三层神经网络进行回归实验</li>
+</ol>
+<h4 id="实验内容-1"><a href="#实验内容-1" class="headerlink" title="实验内容"></a>实验内容</h4><p>使用 numpy 库构建简单的数据集，编写简单的三层回归神经网络，输入和输出只有一个神经元，中间隐藏层可设置 N 个神经元，采用 Sigmoid 函数作为激活函数。数据集按 y&#x3D;x+随机噪声进行构建，x 取值为 0, 1, …, 19。了解 pytorch 中的梯度计算，及梯度下降法进行神经网络的权值更新</p>
+<p>导入必须的库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>变量 N</strong> 是batchsize</li>
+<li><strong>变量 D_in</strong> 是输入维度</li>
+<li><strong>变量 H</strong> 是隐藏层维度</li>
+<li><strong>变量 D_out</strong> 是输出维度</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># N is batch size; D_in is input dimension;</span></span><br><span class="line"><span class="comment"># H is hidden dimension; D_out is output dimension. </span></span><br><span class="line">N, D_in, H, D_out = <span class="number">20</span>, <span class="number">1</span>, <span class="number">64</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create random input and output data</span></span><br><span class="line"><span class="comment"># 创建随机输入和输出数据</span></span><br><span class="line">np.random.seed(<span class="number">0</span>)</span><br><span class="line">x = torch.tensor(np.arange(<span class="number">0</span>,N,<span class="number">1</span>).reshape(N,D_in),dtype=torch.float32) <span class="comment">#20*1</span></span><br><span class="line">y = x +torch.tensor(np.random.randn(N,D_out), dtype=torch.float32) <span class="comment">#20*1</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>torch</strong><br><strong>torch.nn.Sequential()</strong> 定义简单顺序连接模型<br><strong>torch.nn.Linear(D_in, H)</strong> 全连接层 指定输入向量和输出向量的形状<br><strong>torch.nn.ReLU()</strong> 对输入应用激活函数ReLU<br><strong>torch.nn.MSELoss(reduction&#x3D;’sum’)</strong> 均方损失函数 reduction指定结果是求和sum还是平均mean</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use the nn package to define our model and loss function. </span></span><br><span class="line"><span class="comment"># 使用pytorch的nn包来定义模型model和损失函数</span></span><br><span class="line">model = torch.nn.Sequential(</span><br><span class="line">    torch.nn.Linear(D_in, H), </span><br><span class="line">    torch.nn.ReLU(), </span><br><span class="line">    torch.nn.Linear(H, D_out), </span><br><span class="line">)</span><br><span class="line">loss_fn = torch.nn.MSELoss(reduction=<span class="string">&#x27;sum&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>torch.optim.Adam(model.parameters(),lr&#x3D;learning_rate)</strong><br>adam的第一个参数确定了他该更新的张量 optim包中还有很多其他的优化算法<br><strong>optimizer.zero_grad()</strong><br>将优化器的梯度全部初始化为0<br> 这是因为默认情况下，每当调用 .backward() 时，梯度都会在缓冲区中累积（即不被覆盖）。<br><strong>optimizer.step()</strong><br> 调用step函数可以更新优化器的参数<br><strong>loss.backward()</strong><br>计算损失关于模型的梯度</li>
+<li><strong>matplotlib.pyplot</strong><br><strong>plt.cla()</strong> 清除当前坐标轴<blockquote>
+<p>matplotlib.pyplot.cla() 方法清除当前坐标轴，<br>matplotlib.pyplot.clf() 方法清除当前图形，<br>matplotlib.pyplot.close() 方法关闭整个窗口</p>
+</blockquote>
+</li>
+<li><strong>plt.scatter()</strong> 生成一个scatter散点图</li>
+<li><strong>plt.plot()</strong> 生成一个线图<br>plt.plot(x.data.numpy(),y_pred.data.numpy(),’r-‘,lw&#x3D;1, label&#x3D;”plot figure”)使用xy的数据生成 r-使用红色-实线<br><strong>可选参数 fmt</strong> &#x3D; ‘[color][marker][line]’ 使用三个字符来标记 具体标记查看下面的链接<br><strong>lw&#x3D;&#x3D;linewidth</strong> 指定线的宽度<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_36219858/article/details/79800460">matplotlib.pyplot.plot()参数详解</a><br><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot">matplotlib.pyplot.plot()官方文档</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use the optim package to define an Optimizer that will update the weights of the model for us. </span></span><br><span class="line"><span class="comment"># Here we will use Adam; the optim package contains many other optimization algorithms. </span></span><br><span class="line"><span class="comment"># The first argument to the Adam constructor tells the optimizer which Tensors it should update.</span></span><br><span class="line"><span class="comment"># 定义优化算法Optimizer 为adam算法</span></span><br><span class="line"><span class="comment"># adam的第一个参数确定了他该更新的张量</span></span><br><span class="line">learning_rate = <span class="number">1e-4</span></span><br><span class="line">optimizer = torch.optim.Adam(model.parameters(),lr=learning_rate)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5000</span>):</span><br><span class="line">    <span class="comment"># Forward pass: compute predicted y by passing x to the model. </span></span><br><span class="line">    <span class="comment"># 前向传播 通过将x传入模型计算预测值y</span></span><br><span class="line">    y_pred = model(x)</span><br><span class="line">    <span class="comment"># Compute and print loss.</span></span><br><span class="line">    <span class="comment"># 计算并输出loss损失</span></span><br><span class="line">    loss = loss_fn(y_pred, y)</span><br><span class="line">    <span class="keyword">if</span> t % <span class="number">200</span> == <span class="number">0</span>:</span><br><span class="line">        <span class="comment">#y_pred=model.predict(x)</span></span><br><span class="line">        plt.cla()</span><br><span class="line">        <span class="comment"># 原数据散点图</span></span><br><span class="line">        plt.scatter(x.data.numpy(),y.data.numpy())</span><br><span class="line">        <span class="comment"># 预测数据散点图</span></span><br><span class="line">        plt.scatter(x.data.numpy(),y_pred.data.numpy())</span><br><span class="line">        <span class="comment"># 预测数据线图</span></span><br><span class="line">        plt.plot(x.data.numpy(),y_pred.data.numpy(),<span class="string">&#x27;r-&#x27;</span>,lw=<span class="number">1</span>, label=<span class="string">&quot;plot figure&quot;</span>)</span><br><span class="line">        <span class="comment"># 文本 输出对应的t和损失</span></span><br><span class="line">        plt.text(<span class="number">0.5</span>, <span class="number">0</span>, <span class="string">&#x27;t=%d:Loss=%.4f&#x27;</span> % (t, loss), fontdict=&#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">20</span>, <span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>&#125;)</span><br><span class="line">        plt.show()</span><br><span class="line">    <span class="comment"># Before the backward pass, use the optimizer object to zero all of the gradients for the variables it will update (which are the learnable weights of the model). </span></span><br><span class="line">    <span class="comment"># This is because by default, gradients are accumulated in buffers( i.e, not overwritten) whenever .backward() is called. </span></span><br><span class="line">    <span class="comment"># Checkout docs of torch.autograd.backward for more details. </span></span><br><span class="line">    <span class="comment"># 将优化器的梯度全部初始化为0</span></span><br><span class="line">    <span class="comment"># 这是因为默认情况下，每当调用 .backward() 时，梯度都会在缓冲区中累积（即不被覆盖）。</span></span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Backward pass: compute gradient of the loss with respect to model</span></span><br><span class="line">    <span class="comment"># parameters</span></span><br><span class="line">    <span class="comment"># 计算梯度函数 关于函数参数的梯度</span></span><br><span class="line">    loss.backward()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Calling the step function on an Optimizer makes an update to its parameters</span></span><br><span class="line">    <span class="comment"># 调用step函数可以更新优化器的参数</span></span><br><span class="line">    optimizer.step()</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验2-3-基于pytorch构建简单的三层分类神经网络"><a href="#实验2-3-基于pytorch构建简单的三层分类神经网络" class="headerlink" title="实验2-3 基于pytorch构建简单的三层分类神经网络"></a>实验2-3 基于pytorch构建简单的三层分类神经网络</h2><h4 id="实验目的-2"><a href="#实验目的-2" class="headerlink" title="实验目的"></a>实验目的</h4><ol>
+<li>了解 pytorch 下采用 adam 梯度下降法进行神经网络中的权值更新；</li>
+<li>学习使用 pytorch 编写简单的三层神经网络进行分类实验。</li>
+</ol>
+<h4 id="实验内容-2"><a href="#实验内容-2" class="headerlink" title="实验内容"></a>实验内容</h4><p>使用库构建简单的二分类数据集，编写简单的三层分类神经网络，输入和输出均有两个神经元，中间隐藏层可设置 N 个神经元，采用 Relu 函数作为激活函数。<br>数据集按两个类构建，每个类的样本为两维，分散在类中心附近。<br>学习梯度计算，及梯度下降法进行神经网络的权值修改</p>
+<p>导入需要的库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+
+<p>造一组数据<br><strong>torch.ones(100, 2)</strong><br>torch.normal(2*n_data, 1)<br>torch.zeros(100)<br>torch.cat((x0, x1), 0).type(torch.FloatTensor)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">n_data = torch.ones(<span class="number">100</span>, <span class="number">2</span>)<span class="comment"># 创建全为1 的tensor</span></span><br><span class="line">x0 = torch.normal(<span class="number">2</span>*n_data, <span class="number">1</span>) <span class="comment"># class0 x data (tensor), shape=(100, 2)</span></span><br><span class="line">y0 = torch.zeros(<span class="number">100</span>) <span class="comment"># class0 y data (tensor), shape=(100, 1)</span></span><br><span class="line">x1 = torch.normal(-<span class="number">2</span>*n_data, <span class="number">1</span>) <span class="comment"># class1 x data (tensor), shape=(100, 2)</span></span><br><span class="line">y1 = torch.ones(<span class="number">100</span>) <span class="comment"># class1 y data (tensor), shape=(100, 1)</span></span><br><span class="line">x = torch.cat((x0, x1), <span class="number">0</span>).<span class="built_in">type</span>(torch.FloatTensor) <span class="comment"># shape (200, 2) FloatTensor = 32-bit floating</span></span><br><span class="line">y = torch.cat((y0, y1), ).<span class="built_in">type</span>(torch.LongTensor) <span class="comment"># shape (200,) LongTensor = 64-bit integer</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:12px;">-------------本文结束<i class="fa fa-thumbs-up fa-spin"></i><span class="sr-only">Loading...</span>感谢您的阅读-------------</div>
+    
+</div>
+      </div>
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C1/" rel="prev" title="机器学习基础实验">
+      <i class="fa fa-chevron-left"></i> 机器学习基础实验
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.</span> <span class="nav-text">深度学习基础实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.</span> <span class="nav-text">实验总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C2-1-%E5%9F%BA%E4%BA%8Enumpy%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%89%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.3.</span> <span class="nav-text">实验2-1 基于numpy构建简单的三层神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">实验内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C2-2-%E5%9F%BA%E4%BA%8Epytorch%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%89%E5%B1%82%E5%9B%9E%E5%BD%92%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.4.</span> <span class="nav-text">实验2-2 基于pytorch构建简单的三层回归神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-1"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-1"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">实验内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C2-3-%E5%9F%BA%E4%BA%8Epytorch%E6%9E%84%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%89%E5%B1%82%E5%88%86%E7%B1%BB%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.5.</span> <span class="nav-text">实验2-3 基于pytorch构建简单的三层分类神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84-2"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-2"><span class="nav-number">1.5.0.2.</span> <span class="nav-text">实验内容</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sparidae"
+      src="https://i.imgur.com/gY8RyJm.png">
+  <p class="site-author-name" itemprop="name">Sparidae</p>
+  <div class="site-description" itemprop="description">Great ideals but through selfless struggle and sacrifice to achieve</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sparidae" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sparidae" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/2992646478/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;2992646478&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://zhengyangwang1.github.io/" title="https:&#x2F;&#x2F;zhengyangWang1.github.io" rel="noopener" target="_blank">陽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <div id="music163player">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=210 src="//music.163.com/outchain/player?type=0&id=7614540316&auto=0&height=430">
+        </iframe>
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sparidae</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
