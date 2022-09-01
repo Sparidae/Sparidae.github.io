@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="计算机视觉基础实验目录3-1验证码识别3-2图像检索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机视觉基础实验">
+<meta property="og:url" content="http://example.com/2022/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C/index.html">
+<meta property="og:site_name" content="打工试验场">
+<meta property="og:description" content="计算机视觉基础实验目录3-1验证码识别3-2图像检索">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.imgur.com/agxb5eo.png">
+<meta property="og:image" content="https://i.imgur.com/EzGYVSC.png">
+<meta property="og:image" content="https://i.imgur.com/o4b5KEj.png">
+<meta property="og:image" content="https://i.imgur.com/S8pOmkQ.png">
+<meta property="og:image" content="https://i.imgur.com/NnpSupY.png">
+<meta property="og:image" content="https://i.imgur.com/HRD2BzK.png">
+<meta property="og:image" content="https://i.imgur.com/wGan6r7.png">
+<meta property="og:image" content="https://i.imgur.com/HVEG3ws.png">
+<meta property="og:image" content="https://i.imgur.com/gSKltAi.jpg">
+<meta property="og:image" content="https://i.imgur.com/mgGzj5q.png">
+<meta property="og:image" content="https://i.imgur.com/YNAmhV0.jpg">
+<meta property="og:image" content="https://i.imgur.com/SOi1FiQ.png">
+<meta property="og:image" content="https://i.imgur.com/Xf6WjqX.png">
+<meta property="article:published_time" content="2022-09-01T05:12:56.000Z">
+<meta property="article:modified_time" content="2022-09-01T08:49:03.633Z">
+<meta property="article:author" content="Sparidae">
+<meta property="article:tag" content="计算机视觉">
+<meta property="article:tag" content="python图像处理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/agxb5eo.png">
+
+<link rel="canonical" href="http://example.com/2022/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计算机视觉基础实验 | 打工试验场</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">打工试验场</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/gY8RyJm.png">
+      <meta itemprop="name" content="Sparidae">
+      <meta itemprop="description" content="Great ideals but through selfless struggle and sacrifice to achieve">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="打工试验场">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机视觉基础实验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-01 13:12:56 / 修改时间：16:49:03" itemprop="dateCreated datePublished" datetime="2022-09-01T13:12:56+08:00">2022-09-01</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="计算机视觉基础实验"><a href="#计算机视觉基础实验" class="headerlink" title="计算机视觉基础实验"></a>计算机视觉基础实验</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#%E5%AE%9E%E9%AA%8C%E7%BC%96%E5%8F%B73-1%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB">3-1验证码识别</a><br><a href="">3-2图像检索</a></p>
+<span id="more"></span>
+<hr>
+<h2 id="实验编号3-1验证码识别"><a href="#实验编号3-1验证码识别" class="headerlink" title="实验编号3-1验证码识别"></a>实验编号3-1验证码识别</h2><h4 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h4><ol>
+<li>熟悉图像增强、图像分割等图像处理的应用；</li>
+<li>对验证码进行识别，熟悉图像识别的过程。</li>
+</ol>
+<h4 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h4><p>本实验针对图像处理和识别技术进行 python 的编程实现，实现对图像进行编辑、处理、增强和识别，让学生对对人工智能技术中的图像识别技术有个直观的了解。</p>
+<ol>
+<li>图像处理基本操作，如：图像编辑、图像增强、图像直方图变换；</li>
+<li>图像识别相关操作，如：图像特征提取；</li>
+<li>对验证码和 OCR 技术进行较为深入的理解。</li>
+</ol>
+<ul>
+<li>pillow图像处理库<br><strong>导入</strong> from PIL import Image<br><strong>图片对象</strong> img&#x3D;Image.open(“图片路径”)<br><strong>img.size</strong> 返回图片的大小<br><strong>img.mode</strong> 返回图片的色彩模式 有L（灰度图），RGB（三原色）和CMYK（印刷四分色）等<br><strong>img.format</strong> 返回图片的格式<br><strong>img.getpixel(tuple(a,b))</strong> 返回a,b位置的灰度或者像素色彩RGB或者CMYK的四位值<br><strong>img.convert(mode)</strong> 将当前图片转化为对应色彩mode模式的图片<br><strong>img.crop(四元组(b1,a1,b2,a2))</strong> 返回从坐标a1,b1 裁剪到a2,b2的图片<br>pillow采用这样的坐标<br><img src="https://i.imgur.com/agxb5eo.png" alt="img.crop()的坐标示意"><br><strong>img.save(“保存路径”)</strong>  保存这张处理后的图片<br><strong>img.show()</strong> 展示当前图片</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">im=Image.<span class="built_in">open</span>(<span class="string">&quot;data\\test.png&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(im.size)</span><br><span class="line"><span class="built_in">print</span>(im.mode)</span><br><span class="line"><span class="built_in">print</span>(im.<span class="built_in">format</span>)</span><br><span class="line"><span class="built_in">print</span>(im.getpixel((<span class="number">100</span>,<span class="number">200</span>)))</span><br><span class="line"><span class="comment"># 转化为灰度图像</span></span><br><span class="line">im_L = im.convert(<span class="string">&quot;L&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(im_L.getpixel((<span class="number">100</span>,<span class="number">200</span>)))</span><br><span class="line">im_L.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 转化为CMYK图像</span></span><br><span class="line">im_CMYK = im.convert(<span class="string">&quot;CMYK&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(im_CMYK.getpixel((<span class="number">100</span>,<span class="number">200</span>)))</span><br><span class="line">im_CMYK.show()</span><br><span class="line"></span><br><span class="line">box = (<span class="number">100</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">400</span>)</span><br><span class="line">region = im_L.crop(box)</span><br><span class="line">region.save(<span class="string">&quot;d:\\crop_img.jpg&quot;</span>)</span><br><span class="line">region.show()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>pillow<br><strong>r,g,b&#x3D;img.split()</strong> 将rgb图像三通道拆分变成三张灰度图<br><strong>Image.merge(“mode”,new_im)</strong><br>mode是新图片的色彩mode<br>new_im是新图片的对应的 频段图片通道的列表</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">im1 = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\1.jpg&quot;</span>)</span><br><span class="line">im2 = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\2.jpg&quot;</span>)</span><br><span class="line"><span class="comment"># 分离图像的三通道 分别生成一个图像</span></span><br><span class="line">r1,g1,b1 = im1.split()</span><br><span class="line">r2,g2,b2 = im2.split()</span><br><span class="line"><span class="built_in">print</span>(r1.mode,r1.size,g1.mode,g1.size,b1.mode,b1.size)</span><br><span class="line"><span class="built_in">print</span>(r2.mode,r2.size,g2.mode,g2.size,b2.mode,b2.size)</span><br><span class="line">r1.show()</span><br><span class="line">g1.show()</span><br><span class="line">b1.show()</span><br><span class="line">new_im=[r1,g2,b2]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(new_im))</span><br><span class="line">im_merge = Image.merge(<span class="string">&quot;RGB&quot;</span>,new_im)</span><br><span class="line">im_merge.show()</span><br></pre></td></tr></table></figure>
+
+<p><del>看看你的</del><br><img src="https://i.imgur.com/EzGYVSC.png"><br><img src="https://i.imgur.com/o4b5KEj.png"><br><img src="https://i.imgur.com/S8pOmkQ.png"><br><img src="https://i.imgur.com/NnpSupY.png"></p>
+<ul>
+<li><strong>PyLab</strong> 是 <strong>Matplotlib面向对象绘图库的过程接口</strong> 。<br>Matplotlib是整个包;<br>matplotlib.pyplot是Matplotlib中的一个模块;<br>它和PyLab是一个与Matplotlib一起安装的模块</li>
+<li>这个是pylab和pil的联动过程<br>可以将图片绘制到坐标轴中</li>
+<li><strong>array(Image.open(‘data\test.png’))</strong> 返回一个形状为[a,b,3]数组分别代表长宽高和对应的像素RGB值</li>
+<li><strong>imshow(im)</strong><br>matplotlib的函数，用于读取上一个类似的数组并将其绘制进图中，而且按照pillow的坐标轴<br><strong>im必须是以下类型的输入</strong><br>M*N 此时数组必须为浮点型，其中值为该坐标的灰度；<br>M*N*3  RGB（浮点型或者unit8类型）<br>M*N*4  RGBA（浮点型或者unit8类型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> *</span><br><span class="line"><span class="comment"># 读取图像到数组中</span></span><br><span class="line">im = array(Image.<span class="built_in">open</span>(<span class="string">&#x27;data\\test.png&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(im)</span><br><span class="line"><span class="comment"># 绘制图像</span></span><br><span class="line">imshow(im)</span><br><span class="line"><span class="comment"># 一些点</span></span><br><span class="line">x = [<span class="number">100</span>,<span class="number">100</span>,<span class="number">400</span>,<span class="number">400</span>]</span><br><span class="line">y = [<span class="number">200</span>,<span class="number">500</span>,<span class="number">200</span>,<span class="number">500</span>]</span><br><span class="line"><span class="comment"># 使用红色星状标记绘制点</span></span><br><span class="line">plot(x,y,<span class="string">&#x27;r*&#x27;</span>)</span><br><span class="line"><span class="comment"># 绘制连接前两个点的线</span></span><br><span class="line">plot(x[:<span class="number">2</span>],y[:<span class="number">2</span>])</span><br><span class="line"><span class="comment"># 添加标题，显示绘制的图像</span></span><br><span class="line">title(<span class="string">&#x27;Plotting: &quot;empire.jpg&quot;&#x27;</span>)</span><br><span class="line">show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/HRD2BzK.png"></p>
+<ul>
+<li>pil亮度增强<br><strong>ImageEnhance</strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageEnhance</span><br><span class="line"><span class="comment">#原始图像</span></span><br><span class="line">image = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\test.png&quot;</span>)</span><br><span class="line">image.show()</span><br><span class="line"><span class="comment">#亮度增强</span></span><br><span class="line">enh_bri = ImageEnhance.Brightness(image)</span><br><span class="line">brightness = <span class="number">1.5</span></span><br><span class="line">image_brightened = enh_bri.enhance(brightness)</span><br><span class="line">image_brightened.show()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>对比度增强</li>
+<li>锐度增强</li>
+<li>图像模糊 </li>
+<li>轮廓提取<br>（让我想起了这个-&gt;）<a target="_blank" rel="noopener" href="https://lab.magiconch.com/one-last-image/">One Last Image-卢浮宫生成器-One Last Kiss 风格封面生成图片转线稿</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对比度增强</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageEnhance</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFilter</span><br><span class="line"><span class="comment">#原始图像</span></span><br><span class="line">image = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\test.png&quot;</span>)</span><br><span class="line">image.show()</span><br><span class="line"><span class="comment">#对比度增强</span></span><br><span class="line">enh_con = ImageEnhance.Contrast(image)</span><br><span class="line">contrast = <span class="number">5.0</span></span><br><span class="line">image_contrasted = enh_con.enhance(contrast)</span><br><span class="line">image_contrasted.show()</span><br><span class="line"><span class="comment">#锐度增强</span></span><br><span class="line">enh_sha = ImageEnhance.Sharpness(image)</span><br><span class="line">sharpness = <span class="number">5.0</span></span><br><span class="line">image_sharped = enh_sha.enhance(sharpness)</span><br><span class="line">image_sharped.show()</span><br><span class="line"><span class="comment">#图像模糊</span></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\test.png&quot;</span>)</span><br><span class="line">im_blur = im.<span class="built_in">filter</span>(ImageFilter.BLUR)</span><br><span class="line">im_blur.show()</span><br><span class="line"><span class="comment">#轮廓提取</span></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\test.png&quot;</span>)</span><br><span class="line">im_contour = im.<span class="built_in">filter</span>(ImageFilter.CONTOUR)</span><br><span class="line">im_contour.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/wGan6r7.png" alt="原图"><br><img src="https://i.imgur.com/HVEG3ws.png" alt="对比度增强"><br><img src="https://i.imgur.com/gSKltAi.jpg" alt="锐度增强"><br><img src="https://i.imgur.com/mgGzj5q.png" alt="图像模糊"><br><img src="https://i.imgur.com/YNAmhV0.jpg" alt="轮廓提取"></p>
+<ul>
+<li><strong>plt.figure(num&#x3D;None, figsize&#x3D;None, dpi&#x3D;None, facecolor&#x3D;None, edgecolor&#x3D;None, frameon&#x3D;True)</strong><br>“lena”是</li>
+<li><strong>n, bins, patches &#x3D; plt.hist(arr, bins&#x3D;50, normed&#x3D;1, facecolor&#x3D;’green’, alpha&#x3D;0.75)</strong><br>hist函数可以直接绘制直方图<br>hist的参数非常多，但常用的就这五个，只有第一个是必须的，后面四个可选<br><strong>arr</strong> : 需要计算直方图的一维数组<br><strong>bins</strong> : 直方图的柱数，可选项，默认为10<br><del>normed: 是否将得到的直方图向量归一化。默认为0</del>已经没有了<br><strong>facecolor</strong> : 直方图颜色<br><strong>alpha</strong> : 透明度<br>返回值 ：<br><strong>n</strong> : 直方图向量，是否归一化由参数设定<br><strong>bins</strong> : 返回各个bin的区间范围<br><strong>patches</strong>: 返回每个bin里面包含的数据，是一个list</li>
+<li><strong>numpy.flattern()</strong><br>可将多维数组压成一维数组，数组中的值是所有原来的值<br>可对img使用<blockquote>
+<p>类比array()也可对img使用</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#画直方图</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">img=np.array(Image.<span class="built_in">open</span>(<span class="string">&#x27;data\\test.png&#x27;</span>).convert(<span class="string">&#x27;L&#x27;</span>))</span><br><span class="line">plt.figure(<span class="string">&quot;lena&quot;</span>)</span><br><span class="line">arr=img.flatten()</span><br><span class="line">n, bins, patches = plt.hist(arr, bins=<span class="number">256</span>, facecolor=<span class="string">&#x27;green&#x27;</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/SOi1FiQ.png"></p>
+<ul>
+<li>图片二值化</li>
+<li><strong>list.append(a)</strong> 把a添加到列表末尾</li>
+<li><strong>img.point(lut,mode)</strong> 操作像素数据<br><strong>lookuptable</strong> 查找表 其中是对应像素值<br><strong>mode</strong> “1”代表黑0或白1 二值图像</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#图像分割</span></span><br><span class="line"><span class="comment"># 图片二值化</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">img = Image.<span class="built_in">open</span>(<span class="string">&#x27;data\\test.png&#x27;</span>)</span><br><span class="line"><span class="comment"># 模式 L”为灰色图像，它的每个像素用 8 个 bit 表示，0 表示黑，255 表示白，其他数字表示不同的灰度。</span></span><br><span class="line">Img = img.convert(<span class="string">&#x27;L&#x27;</span>)</span><br><span class="line">Img.save(<span class="string">&quot;data\\test1.jpg&quot;</span>)</span><br><span class="line"><span class="comment"># 自定义灰度界限threhold，大于这个值为黑色，小于这个值为白色</span></span><br><span class="line">threshold = <span class="number">100</span></span><br><span class="line">table = []</span><br><span class="line"><span class="comment"># f=lambda x:table.append(0) if i&lt;threshold else table.append(1)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">256</span>):</span><br><span class="line">    <span class="keyword">if</span> i &lt; threshold:</span><br><span class="line">        table.append(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        table.append(<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 图片二值化</span></span><br><span class="line">photo = Img.point(table, <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">photo.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.imgur.com/Xf6WjqX.png" alt="二值图像"></p>
+<ul>
+<li>验证码<br>…</li>
+</ul>
+<h2 id="实验编号3-2-图像检索"><a href="#实验编号3-2-图像检索" class="headerlink" title="实验编号3-2 图像检索"></a>实验编号3-2 图像检索</h2><h4 id="实验目标"><a href="#实验目标" class="headerlink" title="实验目标"></a>实验目标</h4><ol>
+<li>了解手工提取特征的目的及过程</li>
+<li>掌握图像匹配与检索的基本原理</li>
+</ol>
+<h4 id="实验内容-1"><a href="#实验内容-1" class="headerlink" title="实验内容"></a>实验内容</h4><p>通过使用不同特征提取算法、图像匹配算法以及图像距离衡量方法的方案组合，进而理解各个算法对图像检索结果的影响。</p>
+<ol>
+<li>使用 BRISK, AKAZE, KAZE, ORB 四个手工特征，提<br>取自然场景下的图像信息，具体包括关键点检测，以及特征向量构造。根据所得特征向量进行图像匹配与检索。</li>
+<li>所提供图像匹配有：暴力法 (或基于 K 近邻匹配法，以及近似 K近邻匹配法)。</li>
+<li>检索时，所用衡量图像距离的方法有：chebyshev -切比雪夫距，citybloc- 街区距，cosine-余弦夹角，mahalanobis-马氏距离，minkowski-闵可夫斯基距，euclidean-欧式距，hamming-汉明距离</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:12px;">-------------本文结束<i class="fa fa-thumbs-up fa-spin"></i><span class="sr-only">Loading...</span>感谢您的阅读-------------</div>
+    
+</div>
+      </div>
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" rel="tag"># 计算机视觉</a>
+              <a href="/tags/python%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" rel="tag"># python图像处理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/01/CTR%E8%A7%A3%E8%80%A6%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" rel="prev" title="CTR解耦自注意力神经网络">
+      <i class="fa fa-chevron-left"></i> CTR解耦自注意力神经网络
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.</span> <span class="nav-text">计算机视觉基础实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BC%96%E5%8F%B73-1%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">实验编号3-1验证码识别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E7%9A%84"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">实验目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">实验内容</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BC%96%E5%8F%B73-2-%E5%9B%BE%E5%83%8F%E6%A3%80%E7%B4%A2"><span class="nav-number">1.3.</span> <span class="nav-text">实验编号3-2 图像检索</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%9B%AE%E6%A0%87"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">实验目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-1"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">实验内容</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sparidae"
+      src="https://i.imgur.com/gY8RyJm.png">
+  <p class="site-author-name" itemprop="name">Sparidae</p>
+  <div class="site-description" itemprop="description">Great ideals but through selfless struggle and sacrifice to achieve</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sparidae" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sparidae" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/2992646478/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;2992646478&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://zhengyangwang1.github.io/" title="https:&#x2F;&#x2F;zhengyangWang1.github.io" rel="noopener" target="_blank">陽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度(?)</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://theme-next.iissnan.com/" title="https:&#x2F;&#x2F;theme-next.iissnan.com&#x2F;" rel="noopener" target="_blank">NexT官方文档(?)</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <div id="music163player">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=210 src="//music.163.com/outchain/player?type=0&id=7614540316&auto=0&height=430">
+        </iframe>
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sparidae</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
