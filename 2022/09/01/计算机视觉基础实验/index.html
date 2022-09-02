@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://i.imgur.com/SOi1FiQ.png">
 <meta property="og:image" content="https://i.imgur.com/Xf6WjqX.png">
 <meta property="article:published_time" content="2022-09-01T05:12:56.000Z">
-<meta property="article:modified_time" content="2022-09-02T07:58:32.520Z">
+<meta property="article:modified_time" content="2022-09-02T16:03:31.327Z">
 <meta property="article:author" content="Sparidae">
 <meta property="article:tag" content="计算机视觉">
 <meta property="article:tag" content="python图像处理">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-02 15:58:32" itemprop="dateModified" datetime="2022-09-02T15:58:32+08:00">2022-09-02</time>
+                <time title="修改时间：2022-09-03 00:03:31" itemprop="dateModified" datetime="2022-09-03T00:03:31+08:00">2022-09-03</time>
               </span>
 
           
@@ -294,7 +294,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#对比度增强</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageEnhance</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFilter</span><br><span class="line"><span class="comment">#原始图像</span></span><br><span class="line">image = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\test.png&quot;</span>)</span><br><span class="line">image.show()</span><br><span class="line"><span class="comment">#对比度增强</span></span><br><span class="line">enh_con = ImageEnhance.Contrast(image)</span><br><span class="line">contrast = <span class="number">5.0</span></span><br><span class="line">image_contrasted = enh_con.enhance(contrast)</span><br><span class="line">image_contrasted.show()</span><br><span class="line"><span class="comment">#锐度增强</span></span><br><span class="line">enh_sha = ImageEnhance.Sharpness(image)</span><br><span class="line">sharpness = <span class="number">5.0</span></span><br><span class="line">image_sharped = enh_sha.enhance(sharpness)</span><br><span class="line">image_sharped.show()</span><br><span class="line"><span class="comment">#图像模糊</span></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\test.png&quot;</span>)</span><br><span class="line">im_blur = im.<span class="built_in">filter</span>(ImageFilter.BLUR)</span><br><span class="line">im_blur.show()</span><br><span class="line"><span class="comment">#轮廓提取</span></span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">&quot;data\\test.png&quot;</span>)</span><br><span class="line">im_contour = im.<span class="built_in">filter</span>(ImageFilter.CONTOUR)</span><br><span class="line">im_contour.show()</span><br></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/wGan6r7.png" alt="原图"><br><img src="https://i.imgur.com/HVEG3ws.png" alt="对比度增强"><br><img src="https://i.imgur.com/gSKltAi.jpg" alt="锐度增强"><br><img src="https://i.imgur.com/mgGzj5q.png" alt="图像模糊"><br><img src="https://i.imgur.com/YNAmhV0.jpg" alt="轮廓提取"></p>
 <ul>
-<li><strong>plt.figure(num&#x3D;None, figsize&#x3D;None, dpi&#x3D;None, facecolor&#x3D;None, edgecolor&#x3D;None, frameon&#x3D;True)</strong><br>“lena”是</li>
+<li><strong>plt.figure(num&#x3D;None, figsize&#x3D;None, dpi&#x3D;None, facecolor&#x3D;None, edgecolor&#x3D;None, frameon&#x3D;True)</strong><br>“lena”是?</li>
 <li><strong>n, bins, patches &#x3D; plt.hist(arr, bins&#x3D;50, normed&#x3D;1, facecolor&#x3D;’green’, alpha&#x3D;0.75)</strong><br>hist函数可以直接绘制直方图<br>hist的参数非常多，但常用的就这五个，只有第一个是必须的，后面四个可选<br><strong>arr</strong> : 需要计算直方图的一维数组<br><strong>bins</strong> : 直方图的柱数，可选项，默认为10<br><del>normed: 是否将得到的直方图向量归一化。默认为0</del>已经没有了<br><strong>facecolor</strong> : 直方图颜色<br><strong>alpha</strong> : 透明度<br>返回值 ：<br><strong>n</strong> : 直方图向量，是否归一化由参数设定<br><strong>bins</strong> : 返回各个bin的区间范围<br><strong>patches</strong>: 返回每个bin里面包含的数据，是一个list</li>
 <li><strong>numpy.flattern()</strong><br>可将多维数组压成一维数组，数组中的值是所有原来的值<br>可对img使用<blockquote>
 <p>类比array()也可对img使用</p>
