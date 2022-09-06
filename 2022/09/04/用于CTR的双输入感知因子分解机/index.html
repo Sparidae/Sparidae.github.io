@@ -32,8 +32,9 @@
 <meta property="og:image" content="https://i.imgur.com/fxzIE4Y.png">
 <meta property="og:image" content="https://i.imgur.com/3PUsSqJ.png">
 <meta property="og:image" content="https://i.imgur.com/bH1aDSt.png">
+<meta property="og:image" content="https://i.imgur.com/zQDSpir.png">
 <meta property="article:published_time" content="2022-09-04T07:04:45.000Z">
-<meta property="article:modified_time" content="2022-09-04T12:44:17.825Z">
+<meta property="article:modified_time" content="2022-09-06T15:19:34.836Z">
 <meta property="article:author" content="Sparidae">
 <meta property="article:tag" content="CTR">
 <meta name="twitter:card" content="summary">
@@ -209,10 +210,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-09-04 15:04:45 / 修改时间：20:44:17" itemprop="dateCreated datePublished" datetime="2022-09-04T15:04:45+08:00">2022-09-04</time>
+              <time title="创建时间：2022-09-04 15:04:45" itemprop="dateCreated datePublished" datetime="2022-09-04T15:04:45+08:00">2022-09-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-06 23:19:34" itemprop="dateModified" datetime="2022-09-06T23:19:34+08:00">2022-09-06</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -232,25 +239,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><a href="#论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction" class="headerlink" title="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction"></a>论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="因式分解机FM-Factorization-Machines"><a href="#因式分解机FM-Factorization-Machines" class="headerlink" title="因式分解机FM Factorization Machines"></a>因式分解机FM Factorization Machines</h2><p>作为一类作用于真实值的特征向量的一般的预测因子，因式分解机FM能够有效的预估在显着稀疏性（significant sparsity）下的参数<br>正式的说，FM如下预测目标<br><img src="https://i.imgur.com/fxzIE4Y.png" alt=""><br>w0是总偏置（bias）<br>wi是标量权重 vi是第i个特征的k维embedding向量</p>
+        <h1 id="论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><a href="#论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction" class="headerlink" title="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction"></a>论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="2-因式分解机FM-Factorization-Machines"><a href="#2-因式分解机FM-Factorization-Machines" class="headerlink" title="2 因式分解机FM Factorization Machines"></a>2 因式分解机FM Factorization Machines</h2><p>作为一类作用于真实值的特征向量的一般的预测因子，因式分解机FM能够有效的预估在显着稀疏性（significant sparsity）下的参数<br>正式的说，FM如下预测目标<br><img src="https://i.imgur.com/fxzIE4Y.png" alt=""><br>w0是总偏置（bias）<br>wi是标量权重 vi是第i个特征的k维embedding向量</p>
 <p><vi,vj>是两个大小为k的向量的点积 是为了给第i个和第j个特征建模</p>
-<h2 id="论文的方法our-apporach"><a href="#论文的方法our-apporach" class="headerlink" title="论文的方法our apporach"></a>论文的方法our apporach</h2><p><img src="https://i.imgur.com/3PUsSqJ.png" alt="模型"></p>
-<h3 id="DIFM模型"><a href="#DIFM模型" class="headerlink" title="DIFM模型"></a>DIFM模型</h3><p>动机是同时在逐位和逐向量的等级 适应性的学习输入感知（inputware）因素,（来对原有的特征表示进行重新加权 比如w和v）</p>
+<h2 id="3-论文的方法our-apporach"><a href="#3-论文的方法our-apporach" class="headerlink" title="3 论文的方法our apporach"></a>3 论文的方法our apporach</h2><p><img src="https://i.imgur.com/3PUsSqJ.png" alt="模型"></p>
+<h3 id="3-1-DIFM模型"><a href="#3-1-DIFM模型" class="headerlink" title="3.1 DIFM模型"></a>3.1 DIFM模型</h3><p>动机是同时在逐位和逐向量的等级 适应性的学习输入感知（inputware）因素,（来对原有的特征表示进行重新加权 比如w和v）</p>
 <blockquote>
 <p>The motivation is to adaptively learn the input-aware factors<br>(used to reweight the original feature representations: w and v)<br>both at the bit-wise and vector-wise levels simultaneously</p>
 </blockquote>
-<p>模型包含以下部分</p>
-<ol>
-<li>稀疏输入和embedding层</li>
-<li>双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</li>
-<li>连接层combination</li>
-<li>重新加权（Reweighting）层</li>
-<li>预测层</li>
-</ol>
+<p>模型包含以下部分<br><a href="#稀疏输入和embedding层">稀疏输入和embedding层</a><br><a href="#双因素预估网络层dual-factor-estimating-networksdual-fen">双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</a><br><a href="#连结层-combianationlayer">连结层-combianationlayer</a><br><a href="#重新加权reweighting层">重新加权reweighting层</a><br><a href="#预测层prediction">预测层</a></p>
 <h4 id="稀疏输入和embedding层"><a href="#稀疏输入和embedding层" class="headerlink" title="稀疏输入和embedding层"></a>稀疏输入和embedding层</h4><p>这个在基于深度学习的ctr模型中很常用啊，比如DeepFM和AFM<br>稀疏输入对于原始输入特征采用稀疏表示<br>embedding层可以将稀疏特征转化成低维稠密的真值向量<br>embddding层的输出是一个连接（concatenate）的字段向量</p>
 <script type="math/tex; mode=display">
 E_x=[v_1^T,v_2^T,v_3^T,...,v_i^T,...,v_h^T]</script><p>h是字段的数量 vi代表第i个字段的embedding向量</p>
-<h5 id="双因素预估网络层（Dual-Factor-Estimating-Networks）Dual-FEN"><a href="#双因素预估网络层（Dual-Factor-Estimating-Networks）Dual-FEN" class="headerlink" title="双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN"></a>双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</h5><p>包含两个组成成分 the vector-wise part 和 the bit-wise part<br>都是为了学习相同特征在不同输入样例中输入感知的因素</p>
+<h4 id="双因素预估网络层（Dual-Factor-Estimating-Networks）Dual-FEN"><a href="#双因素预估网络层（Dual-Factor-Estimating-Networks）Dual-FEN" class="headerlink" title="双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN"></a>双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</h4><p>包含两个组成成分 the vector-wise part 和 the bit-wise part<br>都是为了学习相同特征在不同输入样例中输入感知的因素</p>
 <p><strong>vector-wise</strong><br>灵感来自于transformer在自然语言处理中机器翻译的成功<br>这里采用了他的核心idea <strong>Multi-Head Self-Attention</strong> 在vectorwise等级上学习输入感知因素<br><img src="https://i.imgur.com/bH1aDSt.png" alt=""></p>
 <ol>
 <li>首先需要将embedding向量转换成需要的样子 h*k矩阵</li>
@@ -258,9 +258,33 @@ E_x=[v_1^T,v_2^T,v_3^T,...,v_i^T,...,v_h^T]</script><p>h是字段的数量 vi代
 <li>之后我们将Q和K进行点积再除以$\sqrt{d_k}$ 然后使用一个softmax函数来获得对Value的权重<script type="math/tex; mode=display">
 Attention(Q_i,K_i,V_i)=softmax(\frac{Q_iK_i^T}{\sqrt{d_k}})V_i</script>之前的论文建议我们使用不同的已学习线性投影将Queries,Keys,Values分别投影到$d_k$,$d_k$,和$d_v$维n次。<br>对所有的投影，我们并行应用attention函数，产生（yielding）一组$d_v$维的向量然后将它们连接（Contanate）起来<script type="math/tex; mode=display">
 MultiHead(U_{vec}) = Concat(head_1,...,head_n)</script><script type="math/tex; mode=display">
-head_i = Attention(Q_i,K_i,V_i)</script>$head_i\in\R^{h\times{d_v}}$代表第i个单头（single head）的输出且n是头的数量</li>
+head_i = Attention(Q_i,K_i,V_i)</script>$head_i\in R^{h\times{d_v}}$代表第i个单头（single head）的输出且n是头的数量</li>
 </ol>
-
+<p>为了保存原始embedding向量的信息，在multiheadselfattention处理后，我们使用残差网络（Residual Network）把原先的特征embedding向量，添加到多头自注意的输出中来</p>
+<script type="math/tex; mode=display">
+Resdual(U_{vec})=Concat(R_1,...,R_n) \\
+R_i=U_{vec}W^{R_i}</script><p>最终vectorwise的输出可以这样写</p>
+<script type="math/tex; mode=display">O_{vec}=\sigma(Multihead(U_{vec})+Resdual(U_{vec}))</script><p>$\sigma$是激活函数</p>
+<p><strong>bit-wise</strong><br>是一堆全连接层<br><img src="https://i.imgur.com/zQDSpir.png" alt=""><br>输入$I_{bit}=E_x$(the embedding vector)</p>
+<script type="math/tex; mode=display">
+a_i=\sigma_1(W_1I_{bit}+b_1)\\
+...\\
+a_i=\sigma_i(W_ia_{i-1}+b_i)\\</script><p>I是输入 W是权重矩阵 b是偏置向量 $\sigma$是激活函数 a是输出</p>
+<script type="math/tex; mode=display">O_{bit}=a_L=\sigma_L(W_La_{L-1}+b_L)</script><h4 id="连结层-Combianationlayer"><a href="#连结层-Combianationlayer" class="headerlink" title="连结层 Combianationlayer"></a>连结层 Combianationlayer</h4><p>把vectorwise的向量reshape一下 因为原先vec的输出向量O是$h\times{d_v} \times{n}$的形状 而bit的输出是t的形状</p>
+<p>然后这样计算</p>
+<script type="math/tex; mode=display">
+m_{vec}=O_{vec}P_{vec}\\
+m_{bit}=O_{bit}P_{bit}</script><p>P是 将两个O转化为对应的h维向量的 权重矩阵</p>
+<p>最后我们结合两个中间的输入感知要素（factor）</p>
+<script type="math/tex; mode=display">m_x=m_{vec}+m_{bit}</script><p>$m_x$是和稀疏输入有关的 同时考虑到vec和bit部分的 完全的输入感知因素</p>
+<h4 id="重新加权（Reweighting）层"><a href="#重新加权（Reweighting）层" class="headerlink" title="重新加权（Reweighting）层"></a>重新加权（Reweighting）层</h4><p>这层的定义如下</p>
+<script type="math/tex; mode=display">
+w_{x,i}=m_{x,i}w_i\\
+v_{x,i}=m_{x,i}v_i\\</script><p>$m_{x,i}$是$m_x$的第i个元素，对应于x中的每一个非零特征 的 第i个输入感知因素。<br>得到的$w$（reweighted input-aware weight）和$v$（embedding vector）是特定输入特征x的重新加权表示  更准确信息丰富</p>
+<h4 id="预测层prediction"><a href="#预测层prediction" class="headerlink" title="预测层prediction"></a>预测层prediction</h4><script type="math/tex; mode=display">
+\hat{y}_{DIFM}(x)=w_0+\sum_{i=1}^{n}w_{x,i}x_i +\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left \langle v_{x,i},v_{x,j} \right \rangle x_ix_j</script><h3 id="3-2-学习"><a href="#3-2-学习" class="headerlink" title="3.2 学习"></a>3.2 学习</h3><p>二分类问题<br>采用了对数损失函数</p>
+<script type="math/tex; mode=display">
+\mathcal{L}=-\frac{1}{N} \sum_{i=1}^{N}\left(y_{i} \log \left(\sigma\left(\hat{y}_{i}\right)\right)+\left(1-y_{i}\right) \log \left(1-\sigma\left(\hat{y}_{i}\right)\right)\right)</script>
     </div>
 
     
@@ -353,7 +377,7 @@ head_i = Attention(Q_i,K_i,V_i)</script>$head_i\in\R^{h\times{d_v}}$代表第i�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%EF%BC%9A%EF%BC%88DIFM%EF%BC%89A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><span class="nav-number">1.</span> <span class="nav-text">论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3%E6%9C%BAFM-Factorization-Machines"><span class="nav-number">1.3.</span> <span class="nav-text">因式分解机FM Factorization Machines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%9A%84%E6%96%B9%E6%B3%95our-apporach"><span class="nav-number">1.4.</span> <span class="nav-text">论文的方法our apporach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DIFM%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">DIFM模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%80%E7%96%8F%E8%BE%93%E5%85%A5%E5%92%8Cembedding%E5%B1%82"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">稀疏输入和embedding层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%8C%E5%9B%A0%E7%B4%A0%E9%A2%84%E4%BC%B0%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%88Dual-Factor-Estimating-Networks%EF%BC%89Dual-FEN"><span class="nav-number">1.4.1.1.1.</span> <span class="nav-text">双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%EF%BC%9A%EF%BC%88DIFM%EF%BC%89A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><span class="nav-number">1.</span> <span class="nav-text">论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3%E6%9C%BAFM-Factorization-Machines"><span class="nav-number">1.3.</span> <span class="nav-text">2 因式分解机FM Factorization Machines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%BA%E6%96%87%E7%9A%84%E6%96%B9%E6%B3%95our-apporach"><span class="nav-number">1.4.</span> <span class="nav-text">3 论文的方法our apporach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-DIFM%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 DIFM模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%80%E7%96%8F%E8%BE%93%E5%85%A5%E5%92%8Cembedding%E5%B1%82"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">稀疏输入和embedding层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%9B%A0%E7%B4%A0%E9%A2%84%E4%BC%B0%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%88Dual-Factor-Estimating-Networks%EF%BC%89Dual-FEN"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E7%BB%93%E5%B1%82-Combianationlayer"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">连结层 Combianationlayer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E5%8A%A0%E6%9D%83%EF%BC%88Reweighting%EF%BC%89%E5%B1%82"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">重新加权（Reweighting）层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%B1%82prediction"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">预测层prediction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 学习</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
