@@ -22,19 +22,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction目录">
+  <meta name="description" content="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction目录2因式分解机fm-factorization-machines3论文的方法our apporach5实验">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用于CTR的双输入感知因子分解机">
 <meta property="og:url" content="http://example.com/2022/09/04/%E7%94%A8%E4%BA%8ECTR%E7%9A%84%E5%8F%8C%E8%BE%93%E5%85%A5%E6%84%9F%E7%9F%A5%E5%9B%A0%E5%AD%90%E5%88%86%E8%A7%A3%E6%9C%BA/index.html">
 <meta property="og:site_name" content="打工试验场">
-<meta property="og:description" content="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction目录">
+<meta property="og:description" content="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction目录2因式分解机fm-factorization-machines3论文的方法our apporach5实验">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.imgur.com/fxzIE4Y.png">
 <meta property="og:image" content="https://i.imgur.com/3PUsSqJ.png">
 <meta property="og:image" content="https://i.imgur.com/bH1aDSt.png">
 <meta property="og:image" content="https://i.imgur.com/zQDSpir.png">
+<meta property="og:image" content="https://i.imgur.com/ACkAZ3a.png">
+<meta property="og:image" content="https://i.imgur.com/sjbiy6a.png">
+<meta property="og:image" content="https://i.imgur.com/c1JEorI.png">
 <meta property="article:published_time" content="2022-09-04T07:04:45.000Z">
-<meta property="article:modified_time" content="2022-09-06T15:19:34.836Z">
+<meta property="article:modified_time" content="2022-09-07T14:38:19.108Z">
 <meta property="article:author" content="Sparidae">
 <meta property="article:tag" content="CTR">
 <meta name="twitter:card" content="summary">
@@ -218,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-06 23:19:34" itemprop="dateModified" datetime="2022-09-06T23:19:34+08:00">2022-09-06</time>
+                <time title="修改时间：2022-09-07 22:38:19" itemprop="dateModified" datetime="2022-09-07T22:38:19+08:00">2022-09-07</time>
               </span>
 
           
@@ -239,8 +242,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><a href="#论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction" class="headerlink" title="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction"></a>论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="2-因式分解机FM-Factorization-Machines"><a href="#2-因式分解机FM-Factorization-Machines" class="headerlink" title="2 因式分解机FM Factorization Machines"></a>2 因式分解机FM Factorization Machines</h2><p>作为一类作用于真实值的特征向量的一般的预测因子，因式分解机FM能够有效的预估在显着稀疏性（significant sparsity）下的参数<br>正式的说，FM如下预测目标<br><img src="https://i.imgur.com/fxzIE4Y.png" alt=""><br>w0是总偏置（bias）<br>wi是标量权重 vi是第i个特征的k维embedding向量</p>
+        <h1 id="论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><a href="#论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction" class="headerlink" title="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction"></a>论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#2-因式分解机fm-factorization-machines">2因式分解机fm-factorization-machines</a><br><a href="#3-论文的方法our-apporach">3论文的方法our apporach</a><br><a href="#5实验">5实验</a></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="2-因式分解机FM-Factorization-Machines"><a href="#2-因式分解机FM-Factorization-Machines" class="headerlink" title="2 因式分解机FM Factorization Machines"></a>2 因式分解机FM Factorization Machines</h2><p>作为一类作用于真实值的特征向量的一般的预测因子，因式分解机FM能够有效的预估在显着稀疏性（significant sparsity）下的参数<br>正式的说，FM如下预测目标<br><img src="https://i.imgur.com/fxzIE4Y.png" alt=""><br>w0是总偏置（bias）<br>wi是标量权重 vi是第i个特征的k维embedding向量</p>
 <p><vi,vj>是两个大小为k的向量的点积 是为了给第i个和第j个特征建模</p>
+<hr>
 <h2 id="3-论文的方法our-apporach"><a href="#3-论文的方法our-apporach" class="headerlink" title="3 论文的方法our apporach"></a>3 论文的方法our apporach</h2><p><img src="https://i.imgur.com/3PUsSqJ.png" alt="模型"></p>
 <h3 id="3-1-DIFM模型"><a href="#3-1-DIFM模型" class="headerlink" title="3.1 DIFM模型"></a>3.1 DIFM模型</h3><p>动机是同时在逐位和逐向量的等级 适应性的学习输入感知（inputware）因素,（来对原有的特征表示进行重新加权 比如w和v）</p>
 <blockquote>
@@ -284,7 +289,38 @@ v_{x,i}=m_{x,i}v_i\\</script><p>$m_{x,i}$是$m_x$的第i个元素，对应于x�
 <h4 id="预测层prediction"><a href="#预测层prediction" class="headerlink" title="预测层prediction"></a>预测层prediction</h4><script type="math/tex; mode=display">
 \hat{y}_{DIFM}(x)=w_0+\sum_{i=1}^{n}w_{x,i}x_i +\sum_{i=1}^{n}\sum_{j=i+1}^{n}\left \langle v_{x,i},v_{x,j} \right \rangle x_ix_j</script><h3 id="3-2-学习"><a href="#3-2-学习" class="headerlink" title="3.2 学习"></a>3.2 学习</h3><p>二分类问题<br>采用了对数损失函数</p>
 <script type="math/tex; mode=display">
-\mathcal{L}=-\frac{1}{N} \sum_{i=1}^{N}\left(y_{i} \log \left(\sigma\left(\hat{y}_{i}\right)\right)+\left(1-y_{i}\right) \log \left(1-\sigma\left(\hat{y}_{i}\right)\right)\right)</script>
+\mathcal{L}=-\frac{1}{N} \sum_{i=1}^{N}\left(y_{i} \log \left(\sigma\left(\hat{y}_{i}\right)\right)+\left(1-y_{i}\right) \log \left(1-\sigma\left(\hat{y}_{i}\right)\right)\right)</script><p>N是训练实例数量</p>
+<h3 id="3-3FM和IFM的关系"><a href="#3-3FM和IFM的关系" class="headerlink" title="3.3FM和IFM的关系"></a>3.3FM和IFM的关系</h3><p>如果去掉vector-wise的部分和连结层combianation-layer，DIFM就会变成退化的IFM模型<br>如果我们进一步删除DNN部分（就是bitwise的部分）同时将$m_{x,i}$置成1，那么$w_{x,i}$和$v_{x,i}$就完全依赖于第i个特征，这样DIFM就会退化成传统的FM模型</p>
+<hr>
+<h2 id="5实验"><a href="#5实验" class="headerlink" title="5实验"></a>5实验</h2><h3 id="5-1实验设置"><a href="#5-1实验设置" class="headerlink" title="5.1实验设置"></a>5.1实验设置</h3><p>使用的是avazu数据集<br>使用和IFM论文一样的处理办法，把数据集分成两个部分0.8训练0.2测试</p>
+<p>criteo数据集包含一个月的广告点击数据<br>有13个连续特征和26个种类特征、<br>我们选择连续七天的样本进行训练，然后接下来的一天用来评估<br>最后它包含一个亿数据点击日志的实例</p>
+<h4 id="评估指标"><a href="#评估指标" class="headerlink" title="评估指标"></a>评估指标</h4><p>AUC()<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8d9b8e282a53">人工智能通识-科普-AUC和ROC - 简书</a><br>LogLoss(交叉熵)</p>
+<blockquote>
+<p>Note that an improvement of 0.001-level in AUC or Logloss is usually regarded as being significant for CTR prediction<br>因为在大厂面对的用户基数非常大所以非常小的优化都能带来非常大的利润</p>
+</blockquote>
+<h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><ul>
+<li>LR逻辑回归</li>
+<li>FM用因式分解级数建模二阶特征交互</li>
+<li>FFM字段感知embedding向量机制 空间复杂度比较高</li>
+<li>NFM导入设置隐藏层数量从1-512个神经元数量</li>
+<li>AFM 使用了attention机制区分二阶特征的重要性</li>
+<li>DeepFM FM部分是一个因式分解机 deep部分是一个三层MLP层大小分别是256，256，256</li>
+<li>xDeepFM 同时考虑了对高阶特征的隐式和显式建模 使用DNN和CIN组件实现</li>
+<li>IFM </li>
+</ul>
+<h4 id="参数设置"><a href="#参数设置" class="headerlink" title="参数设置"></a>参数设置</h4><p>全部使用tensorflow实现<br>为了实现公平比较 所有模型都通过 adam优化损失 学习率全部设置为0.001<br>criteo的embedding大小20 而avazu是40 这和IFM是一样的设置办法<br>每个数据集的batchsize全部设定为2000<br>神经元设定的默认数量DNN是256 CIN是200</p>
+<h3 id="5-2超参学习"><a href="#5-2超参学习" class="headerlink" title="5.2超参学习"></a>5.2超参学习</h3><p><img src="https://i.imgur.com/ACkAZ3a.png" alt="网络超参数影响比较"></p>
+<p>学习四个超参数</p>
+<ol>
+<li>attentionhead的数量</li>
+<li>attention因素的大小</li>
+<li>激活函数</li>
+<li>网络深度</li>
+</ol>
+<p>DIFM中不同组件的作用<br><img src="https://i.imgur.com/sjbiy6a.png" alt=""></p>
+<h3 id="5-3消融学习（abalationstudy）"><a href="#5-3消融学习（abalationstudy）" class="headerlink" title="5.3消融学习（abalationstudy）"></a>5.3消融学习（abalationstudy）</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Sandwichsauce/article/details/89162570">什么是消融实验 深度学习</a></p>
+<h3 id="5-4表现比较"><a href="#5-4表现比较" class="headerlink" title="5.4表现比较"></a>5.4表现比较</h3><p>表现比较<br><img src="https://i.imgur.com/c1JEorI.png" alt=""></p>
+
     </div>
 
     
@@ -318,7 +354,10 @@ v_{x,i}=m_{x,i}v_i\\</script><p>$m_{x,i}$是$m_x$的第i个元素，对应于x�
     <a href="/2022/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%9F%BA%E7%A1%80%E5%AE%9E%E9%AA%8C/" rel="prev" title="计算机视觉基础实验">
       <i class="fa fa-chevron-left"></i> 计算机视觉基础实验
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/07/%E5%8F%94%E6%9C%AC%E5%8D%8E-%E8%AE%BA%E5%85%85%E8%B6%B3%E6%A0%B9%E6%8D%AE%E7%8E%87%E7%9A%84%E5%9B%9B%E9%87%8D%E6%A0%B9/" rel="next" title="叔本华-论充足根据律的四重根">
+      叔本华-论充足根据律的四重根 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -377,7 +416,7 @@ v_{x,i}=m_{x,i}v_i\\</script><p>$m_{x,i}$是$m_x$的第i个元素，对应于x�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%EF%BC%9A%EF%BC%88DIFM%EF%BC%89A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><span class="nav-number">1.</span> <span class="nav-text">论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3%E6%9C%BAFM-Factorization-Machines"><span class="nav-number">1.3.</span> <span class="nav-text">2 因式分解机FM Factorization Machines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%BA%E6%96%87%E7%9A%84%E6%96%B9%E6%B3%95our-apporach"><span class="nav-number">1.4.</span> <span class="nav-text">3 论文的方法our apporach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-DIFM%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 DIFM模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%80%E7%96%8F%E8%BE%93%E5%85%A5%E5%92%8Cembedding%E5%B1%82"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">稀疏输入和embedding层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%9B%A0%E7%B4%A0%E9%A2%84%E4%BC%B0%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%88Dual-Factor-Estimating-Networks%EF%BC%89Dual-FEN"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E7%BB%93%E5%B1%82-Combianationlayer"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">连结层 Combianationlayer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E5%8A%A0%E6%9D%83%EF%BC%88Reweighting%EF%BC%89%E5%B1%82"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">重新加权（Reweighting）层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%B1%82prediction"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">预测层prediction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 学习</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%EF%BC%9A%EF%BC%88DIFM%EF%BC%89A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><span class="nav-number">1.</span> <span class="nav-text">论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3%E6%9C%BAFM-Factorization-Machines"><span class="nav-number">1.3.</span> <span class="nav-text">2 因式分解机FM Factorization Machines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%AE%BA%E6%96%87%E7%9A%84%E6%96%B9%E6%B3%95our-apporach"><span class="nav-number">1.4.</span> <span class="nav-text">3 论文的方法our apporach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-DIFM%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 DIFM模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%80%E7%96%8F%E8%BE%93%E5%85%A5%E5%92%8Cembedding%E5%B1%82"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">稀疏输入和embedding层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%9B%A0%E7%B4%A0%E9%A2%84%E4%BC%B0%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%88Dual-Factor-Estimating-Networks%EF%BC%89Dual-FEN"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9E%E7%BB%93%E5%B1%82-Combianationlayer"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">连结层 Combianationlayer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E5%8A%A0%E6%9D%83%EF%BC%88Reweighting%EF%BC%89%E5%B1%82"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">重新加权（Reweighting）层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%B1%82prediction"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">预测层prediction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3FM%E5%92%8CIFM%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.3FM和IFM的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E5%AE%9E%E9%AA%8C"><span class="nav-number">1.5.</span> <span class="nav-text">5实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1%E5%AE%9E%E9%AA%8C%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1实验设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">评估指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">参数设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2%E8%B6%85%E5%8F%82%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2超参学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3%E6%B6%88%E8%9E%8D%E5%AD%A6%E4%B9%A0%EF%BC%88abalationstudy%EF%BC%89"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3消融学习（abalationstudy）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4%E8%A1%A8%E7%8E%B0%E6%AF%94%E8%BE%83"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.4表现比较</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -393,14 +432,14 @@ v_{x,i}=m_{x,i}v_i\\</script><p>$m_{x,i}$是$m_x$的第i个元素，对应于x�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
