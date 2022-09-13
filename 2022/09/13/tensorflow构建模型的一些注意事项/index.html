@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/mizuki-favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/mizuki-favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="目录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow2与keras构建模型的一些注意事项">
+<meta property="og:url" content="http://example.com/2022/09/13/tensorflow%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
+<meta property="og:site_name" content="打工试验场">
+<meta property="og:description" content="目录">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-13T01:55:00.000Z">
+<meta property="article:modified_time" content="2022-09-13T11:38:57.480Z">
+<meta property="article:author" content="Sparidae">
+<meta property="article:tag" content="tensorflow">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/09/13/tensorflow%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>tensorflow2与keras构建模型的一些注意事项 | 打工试验场</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">打工试验场</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    <!-- https://cdn.jsdelivr.net/npm/sakana-widget@2.2.2/lib/sakana.min.js -->
+<!-- https://cdnjs.cloudflare.com/ajax/libs/sakana-widget/2.2.2/sakana.min.js -->
+<!-- 石蒜模拟器代码 -->
+<div id="sakana-widget" style="position:fixed;bottom:10px;right:10px;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.2.2/lib/sakana.min.js"
+></script>
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/13/tensorflow%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/gY8RyJm.png">
+      <meta itemprop="name" content="Sparidae">
+      <meta itemprop="description" content="Great ideals but through selfless struggle and sacrifice to achieve">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="打工试验场">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          tensorflow2与keras构建模型的一些注意事项
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-13 09:55:00 / 修改时间：19:38:57" itemprop="dateCreated datePublished" datetime="2022-09-13T09:55:00+08:00">2022-09-13</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><span id="more"></span>
+<h2 id="构建模型的三种方式"><a href="#构建模型的三种方式" class="headerlink" title="构建模型的三种方式"></a>构建模型的三种方式</h2><ol>
+<li><a href="#顺序api">Sequential API</a></li>
+<li><a href="#函数式api">Functional API</a></li>
+<li><a href="#model子类化">Subclassing API</a></li>
+</ol>
+<h4 id="顺序API"><a href="#顺序API" class="headerlink" title="顺序API"></a>顺序API</h4><p>序列模型是layer-by-layer的，它是最简单的定义模型的方法，但是有几个不足：</p>
+<ul>
+<li>不能够共享某一层</li>
+<li>不能有多个分支</li>
+<li>不能有多个输入</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tf.keras.backend.clear_session()</span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line"></span><br><span class="line">model.add(layers.Embedding(MAX_WORDS,<span class="number">7</span>,input_length=MAX_LEN))</span><br><span class="line">model.add(layers.Conv1D(filters = <span class="number">64</span>,kernel_size = <span class="number">5</span>,activation = <span class="string">&quot;relu&quot;</span>))</span><br><span class="line">model.add(layers.MaxPool1D(<span class="number">2</span>))</span><br><span class="line">model.add(layers.Conv1D(filters = <span class="number">32</span>,kernel_size = <span class="number">3</span>,activation = <span class="string">&quot;relu&quot;</span>))</span><br><span class="line">model.add(layers.MaxPool1D(<span class="number">2</span>))</span><br><span class="line">model.add(layers.Flatten())</span><br><span class="line">model.add(layers.Dense(<span class="number">1</span>,activation = <span class="string">&quot;sigmoid&quot;</span>))</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&#x27;Nadam&#x27;</span>,</span><br><span class="line">            loss=<span class="string">&#x27;binary_crossentropy&#x27;</span>,</span><br><span class="line">            metrics=[<span class="string">&#x27;accuracy&#x27;</span>,<span class="string">&quot;AUC&quot;</span>])</span><br><span class="line"></span><br><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+<h4 id="函数式API"><a href="#函数式API" class="headerlink" title="函数式API"></a>函数式API</h4><p>函数API是一种创建更灵活模型的方法。它可以处理非线性拓扑、具有共享层的模型和具有多个输入或输出的模型。<br>函数式API有更强的功能</p>
+<ul>
+<li>定义更复杂的模型</li>
+<li>支持多输入多输出</li>
+<li>可以定义模型分支，比如inception block ， resnet block</li>
+<li>方便layer共享</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">tf.keras.backend.clear_session()</span><br><span class="line"></span><br><span class="line">inputs = layers.Input(shape=[MAX_LEN])</span><br><span class="line">x  = layers.Embedding(MAX_WORDS,<span class="number">7</span>)(inputs)</span><br><span class="line"></span><br><span class="line">branch1 = layers.SeparableConv1D(<span class="number">64</span>,<span class="number">3</span>,activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">branch1 = layers.MaxPool1D(<span class="number">3</span>)(branch1)</span><br><span class="line">branch1 = layers.SeparableConv1D(<span class="number">32</span>,<span class="number">3</span>,activation=<span class="string">&quot;relu&quot;</span>)(branch1)</span><br><span class="line">branch1 = layers.GlobalMaxPool1D()(branch1)</span><br><span class="line"></span><br><span class="line">branch2 = layers.SeparableConv1D(<span class="number">64</span>,<span class="number">5</span>,activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">branch2 = layers.MaxPool1D(<span class="number">5</span>)(branch2)</span><br><span class="line">branch2 = layers.SeparableConv1D(<span class="number">32</span>,<span class="number">5</span>,activation=<span class="string">&quot;relu&quot;</span>)(branch2)</span><br><span class="line">branch2 = layers.GlobalMaxPool1D()(branch2)</span><br><span class="line"></span><br><span class="line">branch3 = layers.SeparableConv1D(<span class="number">64</span>,<span class="number">7</span>,activation=<span class="string">&quot;relu&quot;</span>)(x)</span><br><span class="line">branch3 = layers.MaxPool1D(<span class="number">7</span>)(branch3)</span><br><span class="line">branch3 = layers.SeparableConv1D(<span class="number">32</span>,<span class="number">7</span>,activation=<span class="string">&quot;relu&quot;</span>)(branch3)</span><br><span class="line">branch3 = layers.GlobalMaxPool1D()(branch3)</span><br><span class="line"></span><br><span class="line">concat = layers.Concatenate()([branch1,branch2,branch3])</span><br><span class="line">outputs = layers.Dense(<span class="number">1</span>,activation = <span class="string">&quot;sigmoid&quot;</span>)(concat)</span><br><span class="line"></span><br><span class="line">model = models.Model(inputs = inputs,outputs = outputs)</span><br><span class="line"></span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=<span class="string">&#x27;Nadam&#x27;</span>,</span><br><span class="line">            loss=<span class="string">&#x27;binary_crossentropy&#x27;</span>,</span><br><span class="line">            metrics=[<span class="string">&#x27;accuracy&#x27;</span>,<span class="string">&quot;AUC&quot;</span>])</span><br><span class="line"></span><br><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+<h4 id="Model子类化"><a href="#Model子类化" class="headerlink" title="Model子类化"></a>Model子类化</h4><p>如果无特定必要，尽可能避免使用Model子类化的方式构建模型，这种方式提供了极大的灵活性，但也有更大的概率出错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先自定义一个残差模块，为自定义Layer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ResBlock</span>(layers.Layer):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, kernel_size, **kwargs</span>):</span><br><span class="line">        <span class="built_in">super</span>(ResBlock, self).__init__(**kwargs)</span><br><span class="line">        self.kernel_size = kernel_size</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">build</span>(<span class="params">self,input_shape</span>):</span><br><span class="line">        self.conv1 = layers.Conv1D(filters=<span class="number">64</span>,kernel_size=self.kernel_size,</span><br><span class="line">                                   activation = <span class="string">&quot;relu&quot;</span>,padding=<span class="string">&quot;same&quot;</span>)</span><br><span class="line">        self.conv2 = layers.Conv1D(filters=<span class="number">32</span>,kernel_size=self.kernel_size,</span><br><span class="line">                                   activation = <span class="string">&quot;relu&quot;</span>,padding=<span class="string">&quot;same&quot;</span>)</span><br><span class="line">        self.conv3 = layers.Conv1D(filters=input_shape[-<span class="number">1</span>],</span><br><span class="line">                                   kernel_size=self.kernel_size,activation = <span class="string">&quot;relu&quot;</span>,padding=<span class="string">&quot;same&quot;</span>)</span><br><span class="line">        self.maxpool = layers.MaxPool1D(<span class="number">2</span>)</span><br><span class="line">        <span class="built_in">super</span>(ResBlock,self).build(input_shape) <span class="comment"># 相当于设置self.built = True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">call</span>(<span class="params">self, inputs</span>):</span><br><span class="line">        x = self.conv1(inputs)</span><br><span class="line">        x = self.conv2(x)</span><br><span class="line">        x = self.conv3(x)</span><br><span class="line">        x = layers.Add()([inputs,x])</span><br><span class="line">        x = self.maxpool(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">    <span class="comment">#如果要让自定义的Layer通过Functional API 组合成模型时可以序列化，需要自定义get_config方法。</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_config</span>(<span class="params">self</span>):  </span><br><span class="line">        config = <span class="built_in">super</span>(ResBlock, self).get_config()</span><br><span class="line">        config.update(&#123;<span class="string">&#x27;kernel_size&#x27;</span>: self.kernel_size&#125;)</span><br><span class="line">        <span class="keyword">return</span> config</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试ResBlock</span></span><br><span class="line">resblock = ResBlock(kernel_size = <span class="number">3</span>)</span><br><span class="line">resblock.build(input_shape = (<span class="literal">None</span>,<span class="number">200</span>,<span class="number">7</span>))</span><br><span class="line">resblock.compute_output_shape(input_shape=(<span class="literal">None</span>,<span class="number">200</span>,<span class="number">7</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义模型，实际上也可以使用Sequential或者FunctionalAPI</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ImdbModel</span>(models.Model):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(ImdbModel, self).__init__()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">build</span>(<span class="params">self,input_shape</span>):</span><br><span class="line">        self.embedding = layers.Embedding(MAX_WORDS,<span class="number">7</span>)</span><br><span class="line">        self.block1 = ResBlock(<span class="number">7</span>)</span><br><span class="line">        self.block2 = ResBlock(<span class="number">5</span>)</span><br><span class="line">        self.dense = layers.Dense(<span class="number">1</span>,activation = <span class="string">&quot;sigmoid&quot;</span>)</span><br><span class="line">        <span class="built_in">super</span>(ImdbModel,self).build(input_shape)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">call</span>(<span class="params">self, x</span>):</span><br><span class="line">        x = self.embedding(x)</span><br><span class="line">        x = self.block1(x)</span><br><span class="line">        x = self.block2(x)</span><br><span class="line">        x = layers.Flatten()(x)</span><br><span class="line">        x = self.dense(x)</span><br><span class="line">        <span class="keyword">return</span>(x)</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:12px;">-------------本文结束<i class="fa fa-thumbs-up fa-spin"></i><span class="sr-only">Loading...</span>感谢您的阅读-------------</div>
+    
+</div>
+      </div>
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/11/anaconda%E5%A4%9A%E7%8E%AF%E5%A2%83%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" rel="prev" title="anaconda多环境一些注意事项">
+      <i class="fa fa-chevron-left"></i> anaconda多环境一些注意事项
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/09/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E4%B8%AD%E7%9A%84AUC%E8%AF%A6%E8%A7%A3/" rel="next" title="机器学习输出AUC详解">
+      机器学习输出AUC详解 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">构建模型的三种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8FAPI"><span class="nav-number">2.0.1.</span> <span class="nav-text">顺序API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%BC%8FAPI"><span class="nav-number">2.0.2.</span> <span class="nav-text">函数式API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Model%E5%AD%90%E7%B1%BB%E5%8C%96"><span class="nav-number">2.0.3.</span> <span class="nav-text">Model子类化</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sparidae"
+      src="https://i.imgur.com/gY8RyJm.png">
+  <p class="site-author-name" itemprop="name">Sparidae</p>
+  <div class="site-description" itemprop="description">Great ideals but through selfless struggle and sacrifice to achieve</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sparidae" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sparidae" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/2992646478/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;2992646478&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://zhengyangwang1.github.io/" title="https:&#x2F;&#x2F;zhengyangWang1.github.io" rel="noopener" target="_blank">陽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度(看不懂请点击)</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://theme-next.iissnan.com/" title="https:&#x2F;&#x2F;theme-next.iissnan.com&#x2F;" rel="noopener" target="_blank">NexT官方文档(?)</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <div id="music163player">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=210 src="//music.163.com/outchain/player?type=0&id=7614540316&auto=0&height=430">
+        </iframe>
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sparidae</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
