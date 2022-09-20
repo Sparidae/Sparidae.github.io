@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/mizuki-favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/mizuki-favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-flash.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="目录23">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pythonNote">
+<meta property="og:url" content="http://example.com/2022/09/20/pythonNote/index.html">
+<meta property="og:site_name" content="打工试验场">
+<meta property="og:description" content="目录23">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-20T01:46:56.000Z">
+<meta property="article:modified_time" content="2022-09-20T03:24:33.196Z">
+<meta property="article:author" content="Sparidae">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/09/20/pythonNote/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>pythonNote | 打工试验场</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">打工试验场</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    <!-- https://cdn.jsdelivr.net/npm/sakana-widget@2.2.2/lib/sakana.min.js -->
+<!-- https://cdnjs.cloudflare.com/ajax/libs/sakana-widget/2.2.2/sakana.min.js -->
+<!-- 石蒜模拟器代码 -->
+<div id="sakana-widget" style="position:fixed;bottom:10px;right:10px;"></div>
+<script>
+  function initSakanaWidget() {
+    new SakanaWidget().mount('#sakana-widget');
+  }
+</script>
+<script
+  async
+  onload="initSakanaWidget()"
+  src="https://cdn.jsdelivr.net/npm/sakana-widget@2.2.2/lib/sakana.min.js"
+></script>
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/20/pythonNote/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://i.imgur.com/gY8RyJm.png">
+      <meta itemprop="name" content="Sparidae">
+      <meta itemprop="description" content="Great ideals but through selfless struggle and sacrifice to achieve">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="打工试验场">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pythonNote
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-20 09:46:56 / 修改时间：11:24:33" itemprop="dateCreated datePublished" datetime="2022-09-20T09:46:56+08:00">2022-09-20</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#2">2</a><br><a href="#3">3</a></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><h4 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h4><p>大写约定，并无 常量关键字</p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># comments</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;comments&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;comments&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="print"><a href="#print" class="headerlink" title="print()"></a>print()</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>()</span><br></pre></td></tr></table></figure>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>int  float  str  bool</p>
+<p>浮点型可用科学计数法 3.14e9</p>
+<p>字符串中 r”字符串” 中r表示默认不转义</p>
+<h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><p>+ - *<br>\/(浮点除法)<br>\//（整数除法）<br>a**b 乘方</p>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><h2 id="-1"><a href="#-1" class="headerlink" title=""></a><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span>() <span class="built_in">float</span>() <span class="built_in">str</span>() <span class="built_in">bool</span>() </span><br><span class="line"><span class="built_in">type</span>() <span class="comment">#获取数据类型</span></span><br><span class="line"><span class="built_in">isinstance</span>(val,类型)<span class="comment"># 返回一个bool值</span></span><br></pre></td></tr></table></figure></h2><h2 id="3python数据容器（列表元组字典集合）"><a href="#3python数据容器（列表元组字典集合）" class="headerlink" title="3python数据容器（列表元组字典集合）"></a>3python数据容器（列表元组字典集合）</h2><h4 id="list列表"><a href="#list列表" class="headerlink" title="list列表"></a>list列表</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">classmates = [<span class="string">&#x27;Michael&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tracy&#x27;</span>]</span><br><span class="line"><span class="built_in">len</span>(classmates)</span><br><span class="line"><span class="comment"># 用索引来访问list中每一个位置的元素，记得索引是从0开始的</span></span><br><span class="line">classmates[<span class="number">0</span>]</span><br><span class="line">classmates[<span class="number">1</span>]</span><br><span class="line">classmates[<span class="number">2</span>]</span><br><span class="line"><span class="comment"># 倒数第一个元素</span></span><br><span class="line">classmates[-<span class="number">1</span>]</span><br><span class="line">classmates[-<span class="number">2</span>]</span><br><span class="line"><span class="comment"># list是一个可变的有序表，所以，可以往list中追加元素到末尾</span></span><br><span class="line">classmates.append(<span class="string">&#x27;adam&#x27;</span>)</span><br><span class="line"><span class="comment"># 插入指定位置 插入后指定位置是被插入元素 原先元素以及之后的元素后移</span></span><br><span class="line">classmates.insert(<span class="number">1</span>,<span class="string">&#x27;jack&#x27;</span>)</span><br><span class="line"><span class="comment"># 删除末尾元素</span></span><br><span class="line">classmates.pop()</span><br><span class="line"><span class="comment"># 删除指定索引元素 之后其余元素前移</span></span><br><span class="line">classmates.pop(i)</span><br><span class="line"><span class="comment"># 删除指定值元素remove() 这个函数只删除列表中第一个符合对应值的函数 不存在则报错</span></span><br><span class="line">classmates.remove(key)</span><br><span class="line"><span class="comment"># del方法可以将列表指定下标元素删除或者将整个列表删除(之后不能再使用)</span></span><br><span class="line"><span class="keyword">del</span> classmates[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">del</span> classmates</span><br><span class="line"><span class="comment"># 替换元素的直接赋值 类似数组</span></span><br><span class="line">classmates[<span class="number">1</span>] = <span class="string">&#x27;Sarah&#x27;</span></span><br><span class="line"><span class="comment">#list里面的元素的数据类型也可以不同</span></span><br><span class="line">L = [<span class="string">&#x27;Apple&#x27;</span>, <span class="number">123</span>, <span class="literal">True</span>]</span><br><span class="line"><span class="comment">#list元素可以是另一个list 也就是多维数组 不过限制比较少</span></span><br><span class="line">s = [<span class="string">&#x27;python&#x27;</span>, <span class="string">&#x27;java&#x27;</span>, [<span class="string">&#x27;asp&#x27;</span>, <span class="string">&#x27;php&#x27;</span>], <span class="string">&#x27;scheme&#x27;</span>]</span><br><span class="line"><span class="comment"># 定义空list</span></span><br><span class="line">L = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># list 内部元素排序</span></span><br><span class="line">classmates.sort()</span><br><span class="line"><span class="built_in">print</span>(classmates)</span><br></pre></td></tr></table></figure>
+<p>list切片方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line"><span class="comment">#### tuple元组</span></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"><span class="comment"># 同样是有序列表 但是与list不同 一旦初始化就不能改变</span></span><br><span class="line">classmates = (<span class="string">&#x27;Michael&#x27;</span>, <span class="string">&#x27;Bob&#x27;</span>, <span class="string">&#x27;Tracy&#x27;</span>)</span><br><span class="line"><span class="comment"># 可以使用下标索引但是不能使用类似append insert等等方法</span></span><br><span class="line">classmates[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># ！注意tuple定义中的一些问题</span></span><br><span class="line">t= ()<span class="comment"># 这是一个空元组</span></span><br><span class="line">t=(<span class="number">1</span>,<span class="number">2</span>)<span class="comment"># 这是一个多元素元组</span></span><br><span class="line">t=(<span class="number">1</span>)<span class="comment"># 这不是一个一元素元组，t现在是int型1！</span></span><br><span class="line"><span class="comment"># 一元素元组需要这样定义 建议以后全部在最后加一逗号做结尾 python提供了良好的支持</span></span><br><span class="line">t=(<span class="number">1</span>,)</span><br><span class="line"><span class="comment"># tuple虽然是不可变的 但是其中如果包含list tuple只能保证指向的list不变，而不能保证list的元素不发生变化</span></span><br><span class="line">t = (<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>])<span class="comment"># 这就是一个特例</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="dict字典"><a href="#dict字典" class="headerlink" title="dict字典"></a>dict字典</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立key-&gt;value的映射 类似在cpp中的map</span></span><br><span class="line"><span class="comment"># 使用&#123;&#125;定义</span></span><br><span class="line">d = &#123;<span class="string">&#x27;Michael&#x27;</span>: <span class="number">95</span>, <span class="string">&#x27;Bob&#x27;</span>: <span class="number">75</span>, <span class="string">&#x27;Tracy&#x27;</span>: <span class="number">85</span>&#125;</span><br><span class="line">d[<span class="string">&#x27;Michael&#x27;</span>]</span><br><span class="line"><span class="comment"># 查找速度相对较快</span></span><br><span class="line"><span class="comment"># 插入键值对</span></span><br><span class="line">d[<span class="string">&#x27;Adam&#x27;</span>]=<span class="number">23</span></span><br><span class="line"><span class="comment"># 覆盖原先键对应值</span></span><br><span class="line">d[<span class="string">&#x27;Adam&#x27;</span>]=<span class="number">54</span></span><br><span class="line"><span class="comment"># 索引时可以不存在会报错</span></span><br><span class="line">d[<span class="string">&#x27;Toma&#x27;</span>]<span class="comment">#error</span></span><br><span class="line"><span class="comment"># 另外一种所以办法就是使用get()函数 在不存在这个值的时候会返回None或者自己指定的值，但不会报错</span></span><br><span class="line">d.get(<span class="string">&#x27;Thomas&#x27;</span>) <span class="comment"># 返回交互环境不显示的None</span></span><br><span class="line">d.get(<span class="string">&#x27;Thomas&#x27;</span>, -<span class="number">1</span>)<span class="comment"># 指定返回-1</span></span><br><span class="line"><span class="comment"># 相对list来说占用的内存比较多</span></span><br><span class="line"><span class="comment"># 键key必须是一个不可变对象 如不能是列表</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有的key或者value的列表</span></span><br><span class="line">d.keys()</span><br><span class="line">d.values()</span><br></pre></td></tr></table></figure>
+<p>字典的删除办法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用 del 函数对单一元素(键值对)或者整个字典进行删除</span></span><br><span class="line"><span class="keyword">del</span> <span class="built_in">dict</span>[key]</span><br><span class="line"><span class="comment">#使用 pop() 方法删除单一元素</span></span><br><span class="line"><span class="built_in">dict</span>.pop(key)</span><br><span class="line"><span class="comment">#使用 clear() 方法清空词典的所有元素</span></span><br><span class="line"><span class="built_in">dict</span>.clear()</span><br></pre></td></tr></table></figure><br>结合for循环和zip()函数将两个列表之中的元素进行一个字典创建<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,]</span><br><span class="line">b=[<span class="string">&#x27;q&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,]</span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> <span class="built_in">zip</span>(a,b):</span><br><span class="line">    d[key]=value</span><br><span class="line"><span class="comment">#zip()函数用于将多个序列（列表、元组等）中的元素配对，</span></span><br><span class="line"><span class="comment">#产生一个如 [(列表1元素,列表2元素),(,)] 的新的元组列表</span></span><br></pre></td></tr></table></figure><br>判断对应key是否存在 使用in<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=&#123;<span class="number">1</span>:<span class="string">&#x27;a&#x27;</span>,<span class="number">2</span>:<span class="string">&#x27;d&#x27;</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="number">1</span> <span class="keyword">in</span> a)</span><br></pre></td></tr></table></figure><br>在有些情况下，我们需要取出字典中的键值对用于下一步的分析，此时可以使用 items() 方法，该方法将返回所有键值对，并将其保存在一个元组列表（列表中的元素为元组）中<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dict</span>.items()</span><br></pre></td></tr></table></figure></p>
+<h4 id="set集合"><a href="#set集合" class="headerlink" title="set集合"></a>set集合</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在set中没有重复的元素 所有重复的元素会被过滤</span></span><br><span class="line"><span class="comment"># 使用列表和set()函数来初始化一个集合</span></span><br><span class="line">s = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment"># 添加元素add()函数</span></span><br><span class="line">s.add(<span class="number">4</span>)<span class="comment"># 重复添加会被过滤</span></span><br><span class="line"><span class="comment"># 删除对应元素</span></span><br><span class="line">s.remove(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>集合中的数学运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">s1 = <span class="built_in">set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">s2 = <span class="built_in">set</span>([<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">s1 &amp; s2 <span class="comment"># 交集合</span></span><br><span class="line">s1.intersection(s2)</span><br><span class="line"></span><br><span class="line">s1 | s2 <span class="comment"># 并集合</span></span><br><span class="line">s1.union(s2)</span><br><span class="line"></span><br><span class="line">s1 - s2 <span class="comment"># 差</span></span><br><span class="line">s1.difference(s2)</span><br><span class="line"></span><br><span class="line">s1 ^ s2 <span class="comment"># 对称差 异或</span></span><br><span class="line">a.symmetric_difference(s2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 子集</span></span><br><span class="line">s1.issubset(s2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 父集(s2是不是s1的子集)</span></span><br><span class="line">s1.issuperset(s2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否不相交</span></span><br><span class="line">s1.isdisjoint(s2)</span><br></pre></td></tr></table></figure></p>
+<h4 id="不可变对象"><a href="#不可变对象" class="headerlink" title="不可变对象"></a>不可变对象</h4><p>即hashable的对象 比如一个整数 一个不含可变元素的tuple 一个字符串 </p>
+<p>对应的list就是可变对象 称为unhashable</p>
+<p>这样就可以解释以元组作为key来进行dict创建的可行性<br>以及以含有列表的元素作为key来进行dict创建的不可行性<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">c=&#123;(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>):<span class="number">323</span>&#125; <span class="comment"># 正确的</span></span><br><span class="line">c[(<span class="number">1</span>,<span class="number">2</span>,[<span class="number">1</span>,<span class="number">2</span>])]=<span class="number">114</span> <span class="comment"># 错误的 unhashable</span></span><br><span class="line"></span><br><span class="line">a=<span class="built_in">set</span>([(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)]) <span class="comment"># 正确的 </span></span><br><span class="line">a=<span class="built_in">set</span>([(<span class="number">1</span>,[<span class="number">2</span>,<span class="number">3</span>])]) <span class="comment"># 错误的 unhashable</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2>
+    </div>
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:12px;">-------------本文结束<i class="fa fa-thumbs-up fa-spin"></i><span class="sr-only">Loading...</span>感谢您的阅读-------------</div>
+    
+</div>
+      </div>
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/19/%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C%E7%94%BB%E5%9B%BE%E9%80%9A%E7%94%A8%E6%A8%A1%E6%9D%BF220919/" rel="prev" title="物理实验画图通用模板220919">
+      <i class="fa fa-chevron-left"></i> 物理实验画图通用模板220919
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">3.</span> <span class="nav-text">2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">3.0.1.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">3.0.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#print"><span class="nav-number">3.0.3.</span> <span class="nav-text">print()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.0.4.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.0.5.</span> <span class="nav-text">算术运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.0.6.</span> <span class="nav-text">类型转换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number">4.</span> <span class="nav-text">123int() float() str() bool() type() #获取数据类型isinstance(val,类型)# 返回一个bool值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3python%E6%95%B0%E6%8D%AE%E5%AE%B9%E5%99%A8%EF%BC%88%E5%88%97%E8%A1%A8%E5%85%83%E7%BB%84%E5%AD%97%E5%85%B8%E9%9B%86%E5%90%88%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">3python数据容器（列表元组字典集合）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#list%E5%88%97%E8%A1%A8"><span class="nav-number">5.0.1.</span> <span class="nav-text">list列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dict%E5%AD%97%E5%85%B8"><span class="nav-number">5.0.2.</span> <span class="nav-text">dict字典</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set%E9%9B%86%E5%90%88"><span class="nav-number">5.0.3.</span> <span class="nav-text">set集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.0.4.</span> <span class="nav-text">不可变对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4"><span class="nav-number">6.</span> <span class="nav-text">4</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sparidae"
+      src="https://i.imgur.com/gY8RyJm.png">
+  <p class="site-author-name" itemprop="name">Sparidae</p>
+  <div class="site-description" itemprop="description">Great ideals but through selfless struggle and sacrifice to achieve</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sparidae" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sparidae" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://steamcommunity.com/id/2992646478/" title="Steam → https:&#x2F;&#x2F;steamcommunity.com&#x2F;id&#x2F;2992646478&#x2F;" rel="noopener" target="_blank"><i class="fab fa-steam fa-fw"></i>Steam</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://zhengyangwang1.github.io/" title="https:&#x2F;&#x2F;zhengyangWang1.github.io" rel="noopener" target="_blank">陽</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://baidu.com/" title="https:&#x2F;&#x2F;baidu.com" rel="noopener" target="_blank">百度(看不懂请点击)</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://theme-next.iissnan.com/" title="https:&#x2F;&#x2F;theme-next.iissnan.com&#x2F;" rel="noopener" target="_blank">NexT官方文档(?)</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+      
+      <div id="music163player">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=210 src="//music.163.com/outchain/player?type=0&id=7614540316&auto=0&height=430">
+        </iframe>
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+  
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sparidae</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
