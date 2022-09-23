@@ -243,8 +243,8 @@
 
       
         <h1 id="论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction"><a href="#论文笔记：（DIFM）A-Dual-Input-aware-Factorization-Machine-for-CTR-Prediction" class="headerlink" title="论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction"></a>论文笔记：（DIFM）A Dual Input-aware Factorization Machine for CTR Prediction</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#2-因式分解机fm-factorization-machines">2因式分解机fm-factorization-machines</a><br><a href="#3-论文的方法our-apporach">3论文的方法our apporach</a><br><a href="#5实验">5实验</a></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="2-因式分解机FM-Factorization-Machines"><a href="#2-因式分解机FM-Factorization-Machines" class="headerlink" title="2 因式分解机FM Factorization Machines"></a>2 因式分解机FM Factorization Machines</h2><p>作为一类作用于真实值的特征向量的一般的预测因子，因式分解机FM能够有效的预估在显着稀疏性（significant sparsity）下的参数<br>正式的说，FM如下预测目标<br><img src="https://i.imgur.com/fxzIE4Y.png" alt=""><br>w0是总偏置（bias）<br>wi是标量权重 vi是第i个特征的k维embedding向量</p>
-<p><vi,vj>是两个大小为k的向量的点积 是为了给第i个和第j个特征建模</p>
+<h2 id><a href="#" class="headerlink" title></a><span id="more"></span></h2><h2 id="2-因式分解机FM-Factorization-Machines"><a href="#2-因式分解机FM-Factorization-Machines" class="headerlink" title="2 因式分解机FM Factorization Machines"></a>2 因式分解机FM Factorization Machines</h2><p>作为一类作用于真实值的特征向量的一般的预测因子，因式分解机FM能够有效的预估在显着稀疏性（significant sparsity）下的参数<br>正式的说，FM如下预测目标<br><img src="https://i.imgur.com/fxzIE4Y.png" alt><br>w0是总偏置（bias）<br>wi是标量权重 vi是第i个特征的k维embedding向量</p>
+<p><vi,vj>是两个大小为k的向量的点积 是为了给第i个和第j个特征建模</vi,vj></p>
 <hr>
 <h2 id="3-论文的方法our-apporach"><a href="#3-论文的方法our-apporach" class="headerlink" title="3 论文的方法our apporach"></a>3 论文的方法our apporach</h2><p><img src="https://i.imgur.com/3PUsSqJ.png" alt="模型"></p>
 <h3 id="3-1-DIFM模型"><a href="#3-1-DIFM模型" class="headerlink" title="3.1 DIFM模型"></a>3.1 DIFM模型</h3><p>动机是同时在逐位和逐向量的等级 适应性的学习输入感知（inputware）因素,（来对原有的特征表示进行重新加权 比如w和v）</p>
@@ -256,7 +256,7 @@
 <script type="math/tex; mode=display">
 E_x=[v_1^T,v_2^T,v_3^T,...,v_i^T,...,v_h^T]</script><p>h是字段的数量 vi代表第i个字段的embedding向量</p>
 <h4 id="双因素预估网络层（Dual-Factor-Estimating-Networks）Dual-FEN"><a href="#双因素预估网络层（Dual-Factor-Estimating-Networks）Dual-FEN" class="headerlink" title="双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN"></a>双因素预估网络层（Dual-Factor Estimating Networks）Dual-FEN</h4><p>包含两个组成成分 the vector-wise part 和 the bit-wise part<br>都是为了学习相同特征在不同输入样例中输入感知的因素</p>
-<p><strong>vector-wise</strong><br>灵感来自于transformer在自然语言处理中机器翻译的成功<br>这里采用了他的核心idea <strong>Multi-Head Self-Attention</strong> 在vectorwise等级上学习输入感知因素<br><img src="https://i.imgur.com/bH1aDSt.png" alt=""></p>
+<p><strong>vector-wise</strong><br>灵感来自于transformer在自然语言处理中机器翻译的成功<br>这里采用了他的核心idea <strong>Multi-Head Self-Attention</strong> 在vectorwise等级上学习输入感知因素<br><img src="https://i.imgur.com/bH1aDSt.png" alt></p>
 <ol>
 <li>首先需要将embedding向量转换成需要的样子 h*k矩阵</li>
 <li>然后我们把输入矩阵映射成的三个不同的矩阵，分别是Queries Keys Values 第i个头 或者说第i个子空间（vec 代表vector-wise，bit 代表 bit-wise）<br>$Q_i=U_{vec}W^{Q_i}$<br>$K_i=U_{vec}W^{K_i}$<br>$V_i=U_{vec}W^{V_i}$<br>$d_k$代表注意力因素的大小 </li>
@@ -270,7 +270,7 @@ head_i = Attention(Q_i,K_i,V_i)</script>$head_i\in R^{h\times{d_v}}$代表第i�
 Resdual(U_{vec})=Concat(R_1,...,R_n) \\
 R_i=U_{vec}W^{R_i}</script><p>最终vectorwise的输出可以这样写</p>
 <script type="math/tex; mode=display">O_{vec}=\sigma(Multihead(U_{vec})+Resdual(U_{vec}))</script><p>$\sigma$是激活函数</p>
-<p><strong>bit-wise</strong><br>是一堆全连接层<br><img src="https://i.imgur.com/zQDSpir.png" alt=""><br>输入$I_{bit}=E_x$(the embedding vector)</p>
+<p><strong>bit-wise</strong><br>是一堆全连接层<br><img src="https://i.imgur.com/zQDSpir.png" alt><br>输入$I_{bit}=E_x$(the embedding vector)</p>
 <script type="math/tex; mode=display">
 a_i=\sigma_1(W_1I_{bit}+b_1)\\
 ...\\
@@ -317,9 +317,9 @@ v_{x,i}=m_{x,i}v_i\\</script><p>$m_{x,i}$是$m_x$的第i个元素，对应于x�
 <li>激活函数</li>
 <li>网络深度</li>
 </ol>
-<p>DIFM中不同组件的作用<br><img src="https://i.imgur.com/sjbiy6a.png" alt=""></p>
+<p>DIFM中不同组件的作用<br><img src="https://i.imgur.com/sjbiy6a.png" alt></p>
 <h3 id="5-3消融学习（abalationstudy）"><a href="#5-3消融学习（abalationstudy）" class="headerlink" title="5.3消融学习（abalationstudy）"></a>5.3消融学习（abalationstudy）</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Sandwichsauce/article/details/89162570">什么是消融实验 深度学习</a></p>
-<h3 id="5-4表现比较"><a href="#5-4表现比较" class="headerlink" title="5.4表现比较"></a>5.4表现比较</h3><p>表现比较<br><img src="https://i.imgur.com/c1JEorI.png" alt=""></p>
+<h3 id="5-4表现比较"><a href="#5-4表现比较" class="headerlink" title="5.4表现比较"></a>5.4表现比较</h3><p>表现比较<br><img src="https://i.imgur.com/c1JEorI.png" alt></p>
 
     </div>
 

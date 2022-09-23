@@ -236,16 +236,16 @@
 
       
         <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#参考">参考</a><br><a href="#理解">理解</a></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/39840928/answer/241440370?utm_oi=1005359532339478528&amp;utm_psn=1553031761725968385">如何理解机器学习和统计中的AUC？</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/wtrnash/article/details/81875866">AUC及TensorFlow AUC计算相关</a></p>
+<h2 id><a href="#" class="headerlink" title></a><span id="more"></span></h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/39840928/answer/241440370?utm_oi=1005359532339478528&amp;utm_psn=1553031761725968385">如何理解机器学习和统计中的AUC？</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/wtrnash/article/details/81875866">AUC及TensorFlow AUC计算相关</a></p>
 <h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>首先 AUC是一个介于0和1之间的值，它代表ROC图像曲线下的面积</p>
 <p>那么现在问题变成了：什么是ROC曲线？</p>
 <p>首先需要了解 <strong>混淆矩阵</strong> 的定义</p>
 <p><strong>混淆矩阵中有四个概念</strong> 分别是<br>Positive 预测值为1<br>Negative 预测值为0<br>True 实际值为1<br>False 实际值为0</p>
 <p>组合上述概念就可产生如下混淆矩阵（原文中图是错误的）</p>
-<p><img src="https://i.imgur.com/GWer4um.png" alt=""></p>
+<p><img src="https://i.imgur.com/GWer4um.png" alt></p>
 <p>这个表格展示了 预测值与真实值 可能的四种情况</p>
 <p>由此引出 <strong>TP和FP的概念</strong> ：<br>TPRate是将真实1预测为1在全部T（正例样本数）中所占的比例 也就是预测正确的比例<br>FPRate是将真实0预测为1在全部F（反例样本数）中所占的比例 也就是预测错误的比例</p>
-<p><img src="https://i.imgur.com/mAg3DWQ.png" alt=""></p>
+<p><img src="https://i.imgur.com/mAg3DWQ.png" alt></p>
 <p>上图就是一个ROC曲线<br>ROC全称是受访者工作特征（Receiver Operating Characteristic）曲线<br>他的横轴是FPRate 纵轴是TPRate</p>
 <p>这样 ROC曲线可以很好的表现 <strong>分类器的区分能力</strong> 上图中这个曲线就是表示分类器完全没有区分能力的情况 </p>
 <p>然而 <strong>我们希望模型达到的效果</strong> 是TP比例比FP高<br>也是对真实类别为1的样本大概率预测为1，对真实类别为0的样本极小概率预测为1（TP大于FP）</p>
@@ -258,8 +258,8 @@
 <li>首先根据模型的预测结果（预测为1概率）将样本进行排序，将最可能是正例，也就是预测出是正例的概率最高的样本排在前面，然后概率依次降低，将最不可能是正例也就是预测时正例概率最低的样本排在最后</li>
 <li>然后ROC曲线以TPR作为纵轴，FPR作为横轴，按顺序逐个把样本预测成正例，在每个样本预测后TPR、FPR的值都会改变，就在图像上增加一个新的点，直到所有点都预测为正例为止</li>
 </ol>
-<p>初始矩阵是这样的 对应ROC曲线的(0,0)点<br><img src="https://i.imgur.com/FcmiHQr.png" alt=""><br>最终矩阵这样的 对应ROC曲线上的(1,1)点<br><img src="https://i.imgur.com/KVVxF6v.png" alt=""></p>
-<p><strong>一开始将样本全部认为是反例 此时TP和FP都是0，最终样本全部预测为正例TP和FP全为1</strong><br>混淆矩阵  每预测一个样本TPR和FPR的值都会改变 依次描点<br><img src="https://i.imgur.com/d5pqFYj.png" alt=""><br>样本量变得极大时，上图就会接近一条曲线</p>
+<p>初始矩阵是这样的 对应ROC曲线的(0,0)点<br><img src="https://i.imgur.com/FcmiHQr.png" alt><br>最终矩阵这样的 对应ROC曲线上的(1,1)点<br><img src="https://i.imgur.com/KVVxF6v.png" alt></p>
+<p><strong>一开始将样本全部认为是反例 此时TP和FP都是0，最终样本全部预测为正例TP和FP全为1</strong><br>混淆矩阵  每预测一个样本TPR和FPR的值都会改变 依次描点<br><img src="https://i.imgur.com/d5pqFYj.png" alt><br>样本量变得极大时，上图就会接近一条曲线</p>
 <hr>
 <ul>
 <li><strong>那么这样画ROC曲线的正确性在哪？</strong></li>

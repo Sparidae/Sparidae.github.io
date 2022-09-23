@@ -30,8 +30,9 @@
 <meta property="og:description" content="[双语字幕]吴恩达深度学习deeplearning.ai">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.imgur.com/4EPzkBU.png">
+<meta property="og:image" content="http://example.com/.com//Snipaste_2022-09-23_21-29-03.png">
 <meta property="article:published_time" content="2022-09-17T15:00:47.000Z">
-<meta property="article:modified_time" content="2022-09-22T15:59:22.132Z">
+<meta property="article:modified_time" content="2022-09-23T13:31:58.655Z">
 <meta property="article:author" content="Sparidae">
 <meta property="article:tag" content="笔记">
 <meta property="article:tag" content="深度学习">
@@ -216,7 +217,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-22 23:59:22" itemprop="dateModified" datetime="2022-09-22T23:59:22+08:00">2022-09-22</time>
+                <time title="修改时间：2022-09-23 21:31:58" itemprop="dateModified" datetime="2022-09-23T21:31:58+08:00">2022-09-23</time>
               </span>
 
           
@@ -238,7 +239,7 @@
 
       
         <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FT4y1E74V?p=3&amp;vd_source=a68b7e543d57b91faaf6809a87f0ce47">[双语字幕]吴恩达深度学习deeplearning.ai</a></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h3 id="1-3使用神经网络进行监督学习"><a href="#1-3使用神经网络进行监督学习" class="headerlink" title="1.3使用神经网络进行监督学习"></a>1.3使用神经网络进行监督学习</h3><p>CNN convolutional neraual network 卷积神经网络 经常应用于图像数据<br>RNN recurrent nerual network 循环神经网络 经常应用于时间序列数据</p>
+<h2 id><a href="#" class="headerlink" title></a><span id="more"></span></h2><h3 id="1-3使用神经网络进行监督学习"><a href="#1-3使用神经网络进行监督学习" class="headerlink" title="1.3使用神经网络进行监督学习"></a>1.3使用神经网络进行监督学习</h3><p>CNN convolutional neraual network 卷积神经网络 经常应用于图像数据<br>RNN recurrent nerual network 循环神经网络 经常应用于时间序列数据</p>
 <ul>
 <li>监督学习supervisedlearning的数据</li>
 </ul>
@@ -249,7 +250,7 @@
 <li>什么规模？</li>
 </ul>
 <p>大量的数据data 或者 更大的模型(更高的计算能力computation)<br>以及近几年大量算法创新</p>
-<p><img src="https://i.imgur.com/4EPzkBU.png" alt=""></p>
+<p><img src="https://i.imgur.com/4EPzkBU.png" alt></p>
 <h3 id="2-1二分分类"><a href="#2-1二分分类" class="headerlink" title="2.1二分分类"></a>2.1二分分类</h3><p>二分类问题binary classfication</p>
 <ul>
 <li>英语：<br>5*4  5 by 4<br>符号 notation</li>
@@ -285,7 +286,9 @@ J(w,b)=\frac{1}{m}\sum_{i=1}^{m}L(\hat{y^{(i)}},y^{(i)})=-\frac{1}{m}\sum_{i=1}^
 <p>可以看作一个最小最小的神经网络</p>
 <h3 id="2-4梯度下降法"><a href="#2-4梯度下降法" class="headerlink" title="2.4梯度下降法"></a>2.4梯度下降法</h3><p>初始化方法<br>全零或者随机值初始化<br>但是在logistic回归中一般不用随机值初始化</p>
 <p>学习率$\alpha$</p>
-<script type="math/tex; mode=display">For\ Cost\ Function\ J(w,b)</script><script type="math/tex; mode=display">w:=w-\alpha\frac{\partial J}{\partial w}</script><script type="math/tex; mode=display">b:=b-\alpha\frac{\partial J}{\partial b}</script><h3 id="2-5导数"><a href="#2-5导数" class="headerlink" title="2.5导数"></a>2.5导数</h3><h3 id="2-6导数更多例子"><a href="#2-6导数更多例子" class="headerlink" title="2.6导数更多例子"></a>2.6导数更多例子</h3><h3 id="2-7计算图"><a href="#2-7计算图" class="headerlink" title="2.7计算图"></a>2.7计算图</h3><h3 id="2-8使用计算图求导"><a href="#2-8使用计算图求导" class="headerlink" title="2.8使用计算图求导"></a>2.8使用计算图求导</h3>
+<script type="math/tex; mode=display">For\ Cost\ Function\ J(w,b)</script><script type="math/tex; mode=display">w:=w-\alpha\frac{\partial J}{\partial w}</script><script type="math/tex; mode=display">b:=b-\alpha\frac{\partial J}{\partial b}</script><h3 id="2-5导数"><a href="#2-5导数" class="headerlink" title="2.5导数"></a>2.5导数</h3><h3 id="2-6导数更多例子"><a href="#2-6导数更多例子" class="headerlink" title="2.6导数更多例子"></a>2.6导数更多例子</h3><h3 id="2-7计算图"><a href="#2-7计算图" class="headerlink" title="2.7计算图"></a>2.7计算图</h3><p>computation graph</p>
+<p><img src="/.com//Snipaste_2022-09-23_21-29-03.png" alt></p>
+<h3 id="2-8使用计算图求导"><a href="#2-8使用计算图求导" class="headerlink" title="2.8使用计算图求导"></a>2.8使用计算图求导</h3>
     </div>
 
     

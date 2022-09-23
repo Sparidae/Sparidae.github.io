@@ -243,7 +243,7 @@
 
       
         <h1 id="机器学习基础实验"><a href="#机器学习基础实验" class="headerlink" title="机器学习基础实验"></a>机器学习基础实验</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><a href="#实验编号1-1线性回归">实验1-1_线性回归</a><br><a href="#实验1-2_k-means聚类">实验1-2_K-means聚类</a></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="实验编号1-1线性回归"><a href="#实验编号1-1线性回归" class="headerlink" title="实验编号1-1线性回归"></a>实验编号1-1线性回归</h2><h4 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h4><ul>
+<h2 id><a href="#" class="headerlink" title></a><span id="more"></span></h2><h2 id="实验编号1-1线性回归"><a href="#实验编号1-1线性回归" class="headerlink" title="实验编号1-1线性回归"></a>实验编号1-1线性回归</h2><h4 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h4><ul>
 <li>了解线性回归的基本原理</li>
 <li>掌握通过梯度下降实现最优解的求解</li>
 </ul>
@@ -344,7 +344,7 @@
 </li>
 <li><p><strong>聚类（Clustering）</strong><br>是按照某个特定标准(如距离)把一个数据集分割成不同的类或簇，使得同一个簇内的数据对象的相似性尽可能大，同时不在同一个簇中的数据对象的差异性也尽可能地大。也即聚类后同一类的数据尽可能聚集到一起，不同类数据尽量分离。</p>
 <ul>
-<li><strong>簇</strong> 即种类数量<br><img src="https://i.imgur.com/H2HHh8p.png" alt=""></li>
+<li><strong>簇</strong> 即种类数量<br><img src="https://i.imgur.com/H2HHh8p.png" alt></li>
 </ul>
 </li>
 <li><p>numpy的一些操作</p>
@@ -368,7 +368,7 @@
 <li><strong>float(a)</strong> 表示将 a 转化为 float 类型</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">## step 1: 载入待聚类数据</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;step 1: load data...&quot;</span> )</span><br><span class="line">dataSet = [] </span><br><span class="line"><span class="comment">#列表，用来表示，列表中的每个元素也是一个二维的列表；这个二维列表就是一个样本，样本中包含有我们的属性值和类别号。</span></span><br><span class="line"><span class="comment">#与我们所熟悉的矩阵类似，最终我们将获得 N*2 的矩阵，每行元素构成了我们的训练样本的属性值和类别号</span></span><br><span class="line">fileIn = <span class="built_in">open</span>(<span class="string">&quot;testdata.txt&quot;</span>) </span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> fileIn.readlines(): <span class="comment">#依次遍历每一行</span></span><br><span class="line">    temp=[] <span class="comment">#定义一个缓存列表</span></span><br><span class="line">    lineArr = line.strip().split(<span class="string">&#x27;\t&#x27;</span>) <span class="comment">#line.strip()把末尾的&#x27;\n&#x27;去掉，.split(&#x27;\t&#x27;)表示以&#x27;\t&#x27;为分隔符将字符串切片。</span></span><br><span class="line">    temp.append(<span class="built_in">float</span>(lineArr[<span class="number">0</span>])) <span class="comment">#float(a)表示将 a 转化为 float 类型。</span></span><br><span class="line">    temp.append(<span class="built_in">float</span>(lineArr[<span class="number">1</span>]))</span><br><span class="line">    dataSet.append(temp) <span class="comment">#向 dataSet 列表中添加元素。</span></span><br><span class="line">fileIn.close() <span class="comment">#关闭刚刚打开的 testdata.txt 文件。</span></span><br><span class="line"><span class="comment">## step 2: 聚类中... </span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;step 2: clustering...&quot;</span> )</span><br><span class="line">dataSet = mat(dataSet) <span class="comment">#mat()函数是 Numpy 中的库函数，将数组转化为矩阵</span></span><br><span class="line">k = <span class="number">4</span></span><br><span class="line">centroids, clusterAssment = kmeans(dataSet, k) <span class="comment">#调用 KMeans 文件中定义的 kmeans 方法</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## step 3: 画图展示结果</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;step 3: show the result...&quot;</span> )</span><br><span class="line">showCluster(dataSet, k, centroids, clusterAssment)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/HCF7CMg.png" alt=""></p>
+<p><img src="https://i.imgur.com/HCF7CMg.png" alt></p>
 
     </div>
 

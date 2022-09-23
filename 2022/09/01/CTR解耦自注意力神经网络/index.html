@@ -237,13 +237,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="论文笔记：（DESTINE）Disentangled-Self-Attentive-Neural-Networks-for-Click-Through-Rate-Prediction"><a href="#论文笔记：（DESTINE）Disentangled-Self-Attentive-Neural-Networks-for-Click-Through-Rate-Prediction" class="headerlink" title="论文笔记：（DESTINE）Disentangled Self-Attentive Neural Networks for Click-Through Rate Prediction"></a>论文笔记：（DESTINE）Disentangled Self-Attentive Neural Networks for Click-Through Rate Prediction</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>CTR问题 数据特征是稀疏的（sparsity） 预测结果却是高维（high demensionality）<br>做出有效预测的关键是 对高阶交互特征建模（high order feature interaction）</p>
+        <h1 id="论文笔记：（DESTINE）Disentangled-Self-Attentive-Neural-Networks-for-Click-Through-Rate-Prediction"><a href="#论文笔记：（DESTINE）Disentangled-Self-Attentive-Neural-Networks-for-Click-Through-Rate-Prediction" class="headerlink" title="论文笔记：（DESTINE）Disentangled Self-Attentive Neural Networks for Click-Through Rate Prediction"></a>论文笔记：（DESTINE）Disentangled Self-Attentive Neural Networks for Click-Through Rate Prediction</h1><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><h2 id><a href="#" class="headerlink" title></a><span id="more"></span></h2><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>CTR问题 数据特征是稀疏的（sparsity） 预测结果却是高维（high demensionality）<br>做出有效预测的关键是 对高阶交互特征建模（high order feature interaction）</p>
 <p>一种有效的方式是自注意力神经网络 来表示特征embedding内积</p>
 <p>为了更好的对复杂特征交互建模，本文提出了一种新颖的DESTINE（详见标题）框架，将一元（unary）特征重要性的计算与成对（pairwise）交互 解耦</p>
 <p>具体地说 一元项（unary term）对一个特征对其他特征的普遍重要性做了建模 而（whereas）成对交互项（pairwise interaction term）帮助了解每个特征对的纯粹影响</p>
 <p>我们使用真实世界的两个基准（benchmark）数据集进行了广泛（extensive）的实验</p>
 <h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><p>high-order feature interaction 高阶交互特征<br>disentangled self-attention self-attention解耦</p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><img src="https://i.imgur.com/ydH4V89.png" alt=""></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><img src="https://i.imgur.com/ydH4V89.png" alt></p>
 <p>主要的挑战是 在CTR中预测的数据包含了大量的分类特征<br>区别于图像中的连续数字特征，这些特征都是高维稀疏的特征<br>这样的输入特征很容易 <strong>让一个复杂的模型不可避免地容易过拟合</strong> （inevitably prone to overfitting）</p>
 <p>因此，从这些高维特征抽出信息的一个成功办法就是 <strong>cross features</strong> ，<br>这个方法 基于embedding查找（lookup）技术 对特征字段（field）间的组合交互（combinatorial interaction）进行建模<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/164356114">feature cross-知乎</a></p>
 <p>举个例子 比如电影CTR问题中<br>一种提供信息的特征基于三阶交互特征可以是{Age, Gender, Genre}（年龄性别类型） （比如年轻男性可能喜欢动作片）</p>

@@ -228,7 +228,7 @@
 
       
         <p>今天突然想到使用bat脚本来一键部署hexo博客<br>进行一个遇到的问题的记录</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><span id="more"></span></h2><h3 id="食用方法"><a href="#食用方法" class="headerlink" title="食用方法"></a>食用方法</h3><ul>
+<h2 id><a href="#" class="headerlink" title></a><span id="more"></span></h2><h3 id="食用方法"><a href="#食用方法" class="headerlink" title="食用方法"></a>食用方法</h3><ul>
 <li>系统：win11 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off </span><br><span class="line">call <span class="built_in">cd</span> /d D:\Blog</span><br><span class="line"><span class="built_in">echo</span> 进行一个博客的上传部署...</span><br><span class="line">::延时1秒</span><br><span class="line">call choice /t 1 /d y /n &gt;nul</span><br><span class="line">::完成博客上传的全部流程</span><br><span class="line">call hexo cl</span><br><span class="line">call hexo g </span><br><span class="line">call hexo d</span><br><span class="line">::进行一个pause来查看是否上传部署成功，不关注结果的话也可以直接删掉</span><br><span class="line">call pause</span><br></pre></td></tr></table></figure>
