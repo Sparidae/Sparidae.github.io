@@ -22,18 +22,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="2.1数据操作入门12345678910111213141516171819import tensorflow as tfx&#x3D;tf.range(12)# 生成12个元素的形状为(12,)的张量print(x)print(x.shape)print(tf.size(x))# 输出元素个数x1&#x3D;tf.reshape(x,(3,4))# 改变张量的形状 形状对应大小必须相同print(x1)#有时，">
+  <meta name="description" content="目录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tensorflow数据处理">
 <meta property="og:url" content="http://example.com/2022/10/04/tensorflow%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="打工试验场">
-<meta property="og:description" content="2.1数据操作入门12345678910111213141516171819import tensorflow as tfx&#x3D;tf.range(12)# 生成12个元素的形状为(12,)的张量print(x)print(x.shape)print(tf.size(x))# 输出元素个数x1&#x3D;tf.reshape(x,(3,4))# 改变张量的形状 形状对应大小必须相同print(x1)#有时，">
+<meta property="og:description" content="目录">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-04T02:52:24.000Z">
-<meta property="article:modified_time" content="2022-10-04T12:55:08.502Z">
+<meta property="article:modified_time" content="2022-10-04T15:00:13.794Z">
 <meta property="article:author" content="Sparidae">
-<meta property="article:tag" content="tensorflow">
 <meta property="article:tag" content="python">
+<meta property="article:tag" content="tensorflow">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/2022/10/04/tensorflow%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
@@ -208,7 +208,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-10-04 10:52:24 / 修改时间：20:55:08" itemprop="dateCreated datePublished" datetime="2022-10-04T10:52:24+08:00">2022-10-04</time>
+              <time title="创建时间：2022-10-04 10:52:24 / 修改时间：23:00:13" itemprop="dateCreated datePublished" datetime="2022-10-04T10:52:24+08:00">2022-10-04</time>
             </span>
 
           
@@ -229,7 +229,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <span id="more"></span>
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><span id="more"></span>
 <hr>
 <h2 id="2-1数据操作"><a href="#2-1数据操作" class="headerlink" title="2.1数据操作"></a>2.1数据操作</h2><h4 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">x=tf.<span class="built_in">range</span>(<span class="number">12</span>)<span class="comment"># 生成12个元素的形状为(12,)的张量</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(x.shape)</span><br><span class="line"><span class="built_in">print</span>(tf.size(x))<span class="comment"># 输出元素个数</span></span><br><span class="line">x1=tf.reshape(x,(<span class="number">3</span>,<span class="number">4</span>))<span class="comment"># 改变张量的形状 形状对应大小必须相同</span></span><br><span class="line"><span class="built_in">print</span>(x1)</span><br><span class="line"></span><br><span class="line"><span class="comment">#有时，我们希望使用全0、全1、其他常量，或者从特定分布中随机采样的数字来初始化矩阵</span></span><br><span class="line">ep=tf.zeros((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,))</span><br><span class="line"><span class="built_in">print</span>(ep)</span><br><span class="line">ep=tf.ones((<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,))</span><br><span class="line"><span class="built_in">print</span>(ep)</span><br><span class="line">ep=tf.random.normal(shape=[<span class="number">3</span>,<span class="number">4</span>])<span class="comment">#均值为0、标准差为1的标准高斯分布（正态分布）中随机采样</span></span><br><span class="line"><span class="built_in">print</span>(ep)</span><br><span class="line"></span><br><span class="line"><span class="comment">#通过提供包含数值的Python列表（或嵌套列表），来为所需张量中的每个元素赋予确定值。 在这里，最外层的列表对应于轴0，内层的列表对应于轴1</span></span><br><span class="line">tf.constant([[<span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><p>最简单且最有用的操作是 <strong>按元素（elementwise）运算</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([<span class="number">1.0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>])</span><br><span class="line">y = tf.constant([<span class="number">2.0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line">x + y, x - y, x * y, x / y, x ** y  <span class="comment"># 按元素加 减 乘 除 幂</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">(&lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 3.,  4.,  6., 10.], dtype=float32)&gt;,</span></span><br><span class="line"><span class="string"> &lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([-1.,  0.,  2.,  6.], dtype=float32)&gt;,</span></span><br><span class="line"><span class="string"> &lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 2.,  4.,  8., 16.], dtype=float32)&gt;,</span></span><br><span class="line"><span class="string"> &lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([0.5, 1. , 2. , 4. ], dtype=float32)&gt;,</span></span><br><span class="line"><span class="string"> &lt;tf.Tensor: shape=(4,), dtype=float32, numpy=array([ 1.,  4., 16., 64.], dtype=float32)&gt;)</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure><br>使用按元素方法来应用一元运算符<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.exp(x)<span class="comment"># e的x次幂</span></span><br></pre></td></tr></table></figure><br>也可以进行线性代数运算包括 <strong>向量点积 矩阵乘法</strong></p>
@@ -262,8 +262,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
               <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
           </div>
 
         
@@ -334,7 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">2.1数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A5%E9%97%A8"><span class="nav-number">1.0.1.</span> <span class="nav-text">入门</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.0.2.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="nav-number">1.0.3.</span> <span class="nav-text">广播机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%87%E7%89%87"><span class="nav-number">1.0.4.</span> <span class="nav-text">索引和切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8A%82%E7%9C%81%E5%86%85%E5%AD%98"><span class="nav-number">1.0.5.</span> <span class="nav-text">节省内存</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">2.1数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A5%E9%97%A8"><span class="nav-number">2.0.1.</span> <span class="nav-text">入门</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">2.0.2.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6"><span class="nav-number">2.0.3.</span> <span class="nav-text">广播机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%92%8C%E5%88%87%E7%89%87"><span class="nav-number">2.0.4.</span> <span class="nav-text">索引和切片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8A%82%E7%9C%81%E5%86%85%E5%AD%98"><span class="nav-number">2.0.5.</span> <span class="nav-text">节省内存</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
